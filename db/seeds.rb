@@ -1,7 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'nokogiri'
+
+# Fetch and parse HTML document
+doc = Nokogiri::HTML(open('./db/words.html'))
+
+words = []
+
+# Search for nodes by css
+doc.css('table table table tr').each_with_index do |tr, i|
+  next if i < 2
+
+  rank = (tr > 'td')[0].inner_text
+  word = (tr > 'td')[1].inner_text
+  pos = (tr > 'td')[2].inner_text
+  words << { id: rank, en: word, pos: pos, created_at: Time.zone.now, updated_at: Time.zone.now }
+end
+
+Word.insert_all(words)
