@@ -3,13 +3,48 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .word {
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(0,0,0,0.7);
 }
 
-ul .pagination > li.page-item > a.page-link {
+a.page-link {
   background-color: #fff;
+  border-radius: 50% !important;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding-top: 9px;
+
+  &[aria-expanded="true"] {
+   background-color: #e9ecef;
+  }
 }
 
-a[aria-expanded="true"] {
-  background-color: #e9ecef;
+.card-body {
+  background-color: honeydew;
+
+  div.feedback img {
+    height: 32px;
+    position: absolute;
+    right: 16px;
+    top: 12px;
+
+    &.correct-svg {
+      filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+    }
+    &.wrong-svg {
+      filter: invert(36%) sepia(82%) saturate(4787%) hue-rotate(336deg) brightness(85%) contrast(107%);
+    }
+  }
+
+  button.chosen {
+    background-color: darkblue;
+  }
+}
+
+
+div.spinner-border {
+  position: absolute;
+  right: 16px;
 }
