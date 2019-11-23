@@ -1,2 +1,21 @@
-<%# provide(:title, "Home") %>
-<h1>Home</h1>
+<% provide(:title, "Home") %>
+
+<div id="pos">
+<% @pos.each do |pos| %>
+  <div class="card my-2">
+    <div class="card-header">
+      <a class="card-link stretched-link" data-toggle="collapse" href="#<%= pos %>"><%= pos.capitalize %></a>
+    </div>
+
+    <div id="<%= pos %>" class="collapse" data-parent="#pos">
+      <div class="d-flex p-1 justify-content-around">
+      <% 5.times do |i| %>
+        <button type="button" class="btn btn-light">
+          <a href="/<%= pos %>/<%= i+1 %>" class="stretched-link">Level <%= i+1 %></a>
+        </button>
+      <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
