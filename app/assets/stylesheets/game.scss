@@ -1,0 +1,15 @@
+// Place all the styles related to the Game controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.word {
+  font-size: 20px;
+}
+
+ul .pagination > li.page-item > a.page-link {
+  background-color: #fff;
+}
+
+a[aria-expanded="true"] {
+  background-color: #e9ecef;
+}

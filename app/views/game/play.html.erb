@@ -1,0 +1,34 @@
+<div id="questions">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-around">
+      <% (1..10).each do |i| %>
+      <li class="page-item">
+        <a class="page-link"
+           data-toggle="collapse"
+           href="#question-<%= i %>"
+           <%= 'aria-expanded=true' if i.eql?(1) %>>
+          <%= i %></a>
+      </li>
+      <% end %>
+    </ul>
+  </nav>
+
+  <% (1..10).each_with_index do |i| %>
+  <div class="card collapse<%= ' show' if i.eql?(1) %>"
+       id="question-<%= i %>"
+       data-parent="#questions" >
+    <div class="card-body">
+      <div class="text-center mb-4 word">
+        <%= @words[i][@target.to_sym] %>
+      </div>
+      <div class="d-flex justify-content-between flex-wrap">
+      <% answers_array(i).each do |option| %>
+        <button class="btn btn-sm btn-info mb-1 correct-answer">
+          <%= @words[option][@source.to_sym] %>
+        </button>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
