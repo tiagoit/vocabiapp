@@ -13,10 +13,13 @@
 ActiveRecord::Schema.define(version: 2019_11_22_111708) do
 
   create_table "words", force: :cascade do |t|
+    t.decimal "rank", default: "0.0"
+    t.string "pos", null: false
     t.string "en"
     t.string "pt"
     t.string "es"
-    t.string "pos"
+    t.boolean "status", default: true
+    t.decimal "level", default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
