@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  # HOME
   root 'static_pages#home'
+
+  # GAME
   get ':pos/:level', to: 'game#play'
-  get 'words-txt', to: 'static_pages#words_txt'
+
+  # ANSWERS
+  post 'answers', to: 'answers#create'
 end
