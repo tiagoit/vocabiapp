@@ -1,5 +1,5 @@
 {
-  "name": "flight_archer",
+  "name": "vocabiapp",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
