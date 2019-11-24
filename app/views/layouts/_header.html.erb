@@ -1,13 +1,22 @@
 <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
   <%= link_to "Vocabi app", root_path, id: "logo", class: 'navbar-brand' %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button"
+          data-toggle="collapse" data-target="#main-navbar"
+          aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="main-navbar">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active"><%= link_to "Home", root_path, class: 'nav-link' %></li>
+      <% unless current_user %>
+        <li class="nav-item"><%= link_to "Home", root_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to "Login", login_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to "Sign up", signup_path, class: 'nav-link' %></li>
+      <% else %>
+        <li class="nav-item username"><%= link_to current_user.name, '#', class: 'nav-link' %></li>
+        <li class="nav-item lang"><%= link_to "Language", set_lang_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to "Logout", logout_path, method: :delete, class: 'nav-link' %></li>
+      <% end %>
     </ul>
   </div>
 </nav>

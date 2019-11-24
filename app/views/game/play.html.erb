@@ -33,13 +33,13 @@
         <%= image_tag('times-solid.svg', alt: 'wrong svg', class: 'wrong-svg')%>
       </div>
       <div class="text-center mb-5 word">
-        <%= @words[i][@target.to_sym] %>
+        <%= @words[i][(current_user&.target || 'en').to_sym] %>
       </div>
       <div class="d-flex justify-content-around flex-wrap">
       <% answers_array(i).each do |option| %>
         <button class="btn btn-sm btn-info mb-1 <%= 'correct-answer' if option.eql?(i) %>"
                 data-word-id="<%= @words[option].id %>">
-          <%= @words[option][@source.to_sym] %>
+          <%= @words[option][(current_user&.source || 'es').to_sym] %>
         </button>
       <% end %>
       </div>
@@ -60,8 +60,8 @@
 
       let correct = $(ev.target).hasClass('correct-answer');
       $.post("/answers", {
-        source: '<%= @source %>',
-        target: '<%= @target %>',
+        source: '<%= current_user&.source || 'es' %>',
+        target: '<%= current_user&.target || 'en' %>',
         word_id: $(ev.target).data('word-id'),
         correct: correct
       }, () => {
