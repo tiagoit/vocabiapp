@@ -1,0 +1,75 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Vocabi app</a></li>
+    <li class="breadcrumb-item"><a href="/"><%= @words.first.pos.pluralize(2).capitalize %></a></li>
+    <li class="breadcrumb-item active" aria-current="page">Level <%= (@words.first.level + 1).to_i %></li>
+  </ol>
+</nav>
+
+<div id="questions">
+  <!-- List of questions -->
+  <nav aria-label="Question numbers" class="py-3">
+    <ul class="pagination justify-content-between">
+      <% (1..10).each do |i| %>
+      <li class="page-item">
+        <a class="page-link"
+           data-toggle="collapse"
+           href="#question-<%= i %>"
+           <%= 'aria-expanded=true' if i.eql?(1) %>>
+          <%= i %></a>
+      </li>
+      <% end %>
+    </ul>
+  </nav>
+
+  <!-- Answer options card -->
+  <% (1..10).each_with_index do |i| %>
+  <div class="card collapse<%= ' show' if i.eql?(1) %>"
+       id="question-<%= i %>"
+       data-parent="#questions" >
+    <div class="card-body">
+      <!-- Spinner-->
+      <div class="spinner-border text-primary" role="status" style="display: none">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <!-- Correct/ wrong icons-->
+      <div class="feedback">
+        <%= image_tag('check-solid.svg', alt: 'correct svg', class: 'correct-svg', style: 'display: none')%>
+        <%= image_tag('times-solid.svg', alt: 'wrong svg', class: 'wrong-svg', style: 'display: none')%>
+      </div>
+      <!-- The word-->
+      <div class="text-center mb-5 word">
+        <%= @words[i][(current_user&.target || 'en').to_sym] %>
+      </div>
+      <!-- Answer options -->
+      <div class="d-flex justify-content-around flex-wrap">
+      <% answers_array(i, @words.count).each do |option| %>
+        <button class="btn btn-sm btn-info mb-1 <%= 'correct-answer' if option.eql?(i) %>"
+                data-word-id="<%= @words[i].id %>" data-answer-id="<%= @words[option].id %>">
+          <%= @words[option][(current_user&.source || 'es').to_sym] %>
+        </button>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<script>
+  $(() => {
+    // User answer
+    $('.card-body button').click((ev) => {
+      $('div.spinner-border').toggle();
+      $(ev.target).attr('disabled', true).addClass('chosen').siblings().attr('disabled', true);
+
+      // Store answer on DB
+      let word_id = $(ev.target).data('word-id');
+      let answer_id = $(ev.target).data('answer-id');
+      $.post("/answers", { word_id, answer_id }, () => {
+        $('div.spinner-border').toggle();
+        let feedbackIcon = $(ev.target).hasClass('correct-answer') ? 'img.correct-svg' : 'img.wrong-svg';
+        $(ev.target).parents('div.card-body').find(feedbackIcon).toggle();
+      });
+    });
+  });
+</script>
