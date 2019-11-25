@@ -43,9 +43,9 @@ end
 added_words = Hash.new(0)
 words.each do |word|
   words_per_pos_level = counter[word[:pos].to_sym] / 5
-  level = 0
+  level = 1
   unless counter[word[:pos].to_sym].zero? && words_per_pos_level.eql?(0)
-    level = added_words[word[:pos].to_sym] / (words_per_pos_level + 1)
+    level = added_words[word[:pos].to_sym] / (words_per_pos_level + 1) + 1
   end
 
   added_words[word[:pos].to_sym] = added_words[word[:pos].to_sym] + 1

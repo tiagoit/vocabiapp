@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 2019_11_24_104858) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "name"
-    t.integer "score"
-    t.integer "week_score"
+    t.string "email", null: false
+    t.string "name", null: false
+    t.integer "score", default: 0
+    t.integer "week_score", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "source"
@@ -36,13 +36,13 @@ ActiveRecord::Schema.define(version: 2019_11_24_104858) do
   end
 
   create_table "words", force: :cascade do |t|
-    t.decimal "rank", default: "0.0"
+    t.integer "rank", default: 0
     t.string "pos", null: false
     t.string "en"
     t.string "pt"
     t.string "es"
     t.boolean "status", default: true
-    t.decimal "level", default: "0.0"
+    t.integer "level", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
