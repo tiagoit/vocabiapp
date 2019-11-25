@@ -13,8 +13,13 @@
         <li class="nav-item"><%= link_to "Login", login_path, class: 'nav-link' %></li>
         <li class="nav-item"><%= link_to "Sign up", signup_path, class: 'nav-link' %></li>
       <% else %>
-        <li class="nav-item username"><%= link_to current_user.name, '#', class: 'nav-link' %></li>
-        <li class="nav-item lang"><%= link_to "Language", set_lang_path, class: 'nav-link' %></li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <%= current_user.name %>
+            <span class='badge badge-light'><%= current_user.score %></span>
+          </a>
+        </li>
+        <li class="nav-item"><%= link_to "Language", set_lang_path, class: 'nav-link' %></li>
         <li class="nav-item"><%= link_to "Logout", logout_path, method: :delete, class: 'nav-link' %></li>
       <% end %>
     </ul>

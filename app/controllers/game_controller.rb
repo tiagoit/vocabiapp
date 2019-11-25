@@ -1,5 +1,7 @@
 class GameController < ApplicationController
   def play
+    redirect_to set_lang_path if current_user && !current_user.source
+
     flash.now[:warning] = 'You should login to track progress.' unless current_user
     @pos = params[:pos].singularize
     @level = params[:level].to_i

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_104858) do
   create_table "answers", force: :cascade do |t|
     t.string "source", null: false
     t.string "target", null: false
-    t.boolean "correct", null: false
+    t.integer "answer_id", null: false
     t.integer "word_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2019_11_24_104858) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "name"
-    t.decimal "score"
-    t.decimal "week_score"
+    t.integer "score"
+    t.integer "week_score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "source"

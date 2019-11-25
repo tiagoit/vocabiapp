@@ -57,7 +57,7 @@ end
 ###############################################################################
 %w[es pt].each do |lang|
   File.open("db/translations_#{lang}.txt") do |file|
-    file.each_with_index { |line, index| words[index][lang.to_sym] = line }
+    file.each_with_index { |line, index| words[index][lang.to_sym] = line.downcase }
   end
 end
 
