@@ -10,43 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_104858) do
-
-  create_table "answers", force: :cascade do |t|
-    t.string "source", null: false
-    t.string "target", null: false
-    t.integer "answer_id", null: false
-    t.integer "word_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_answers_on_user_id"
-    t.index ["word_id"], name: "index_answers_on_word_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "name", null: false
-    t.integer "score", default: 0
-    t.integer "week_score", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "source"
-    t.string "target"
-  end
+ActiveRecord::Schema.define(version: 2019_11_22_111708) do
 
   create_table "words", force: :cascade do |t|
     t.integer "rank", default: 0
+    t.integer "level", null: false
     t.string "pos", null: false
     t.string "en"
     t.string "pt"
     t.string "es"
     t.boolean "status", default: true
-    t.integer "level", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "answers", "users"
-  add_foreign_key "answers", "words"
 end

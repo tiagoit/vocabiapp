@@ -1,7 +1,7 @@
 <% provide(:title, "Home") %>
 
 <div class="row">
-  <div id="pos" class="col-12 col-sm-8 mb-3">
+  <div id="pos" class="col-12">
     <h5>Parts of speech</h5>
     <% @pos.each do |pos| %>
       <div class="card my-2">
@@ -20,17 +20,5 @@
         </div>
       </div>
     <% end %>
-  </div>
-
-  <div class="col-12 col-sm-4 mb-3">
-    <h5>Ranking</h5>
-    <ul class="list-group">
-      <% @ranking.each_with_index do |user, i| %>
-        <li class="list-group-item">
-          <%= i + 1 %>. <%= user.name %>
-          <span class='badge badge-success float-right mt-1'><%= user.score %></span>
-        </li>
-      <% end %>
-    </ul>
   </div>
 </div>

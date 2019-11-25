@@ -28,10 +28,6 @@
        id="question-<%= i %>"
        data-parent="#questions" >
     <div class="card-body">
-      <!-- Spinner-->
-      <div class="spinner-border text-primary" role="status" style="display: none">
-        <span class="sr-only">Loading...</span>
-      </div>
       <!-- Correct/ wrong icons-->
       <div class="feedback">
         <%= image_tag('check-solid.svg', alt: 'correct svg', class: 'correct-svg', style: 'display: none')%>
@@ -39,14 +35,14 @@
       </div>
       <!-- The word-->
       <div class="text-center mb-5 word">
-        <%= @words[i][(current_user&.target || 'en').to_sym] %>
+        <%= @words[i][:en] %>
       </div>
       <!-- Answer options -->
       <div class="d-flex justify-content-around flex-wrap">
       <% answers_array(i, @words.count).each do |option| %>
         <button class="btn btn-sm btn-info mb-1 <%= 'correct-answer' if option.eql?(i) %>"
                 data-word-id="<%= @words[i].id %>" data-answer-id="<%= @words[option].id %>">
-          <%= @words[option][(current_user&.source || 'es').to_sym] %>
+          <%= @words[option][:es] %>
         </button>
       <% end %>
       </div>
@@ -57,19 +53,10 @@
 
 <script>
   $(() => {
-    // User answer
     $('.card-body button').click((ev) => {
-      $('div.spinner-border').toggle();
       $(ev.target).attr('disabled', true).addClass('chosen').siblings().attr('disabled', true);
-
-      // Store answer on DB
-      let word_id = $(ev.target).data('word-id');
-      let answer_id = $(ev.target).data('answer-id');
-      $.post("/answers", { word_id, answer_id }, () => {
-        $('div.spinner-border').toggle();
-        let feedbackIcon = $(ev.target).hasClass('correct-answer') ? 'img.correct-svg' : 'img.wrong-svg';
-        $(ev.target).parents('div.card-body').find(feedbackIcon).toggle();
-      });
+      let feedbackIcon = $(ev.target).hasClass('correct-answer') ? 'img.correct-svg' : 'img.wrong-svg';
+      $(ev.target).parents('div.card-body').find(feedbackIcon).toggle();
     });
   });
 </script>
