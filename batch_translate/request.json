@@ -1,0 +1,16 @@
+{
+  "sourceLanguageCode": "en",
+  "targetLanguageCodes": ["es", "pt"],
+  "inputConfigs": [
+    {
+      "gcsSource": {
+        "inputUri": "gs://sulbaguia/test/input.txt"
+      }
+    }
+  ],
+  "outputConfig": {
+    "gcsDestination": {
+      "outputUriPrefix": "gs://sulbaguia/test/output/"
+    }
+  }
+}

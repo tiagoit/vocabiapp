@@ -1,0 +1,13 @@
+# Instructions to batch translate using Google Translate API
+- Create a GCP project
+- Create a bucket
+- Enable Google Translate API
+- Create a service account and store the generated .json file here
+- `export GOOGLE_APPLICATION_CREDENTIALS="path_to_key.json"`
+- Install gcloud
+- Init gcloud
+- Upload input file to bucket (`gsutil cp`)
+- Create output directory on bucket
+- Replace PROJECT_ID and PROJECT_REGION on `script.sh`
+- Replace input and output URI on `request.json`
+- Execute the script
