@@ -23,7 +23,7 @@ collaborate with its development!
 
 * `ruby` (2.6.5)
 * `bundler` (2.0.2)
-* `sqlite3` (development)
+* `sqlite3` (3.27.2)
 * `yarn` (1.19.2)
 
 #### Setup
