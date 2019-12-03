@@ -1,4 +1,4 @@
-# VocabiApp 
+# VocabiApp
 
 ## What is this app?
 
@@ -22,13 +22,7 @@ collaborate to its development!
 * `sqlite3` (development)
 * `postgresql` (production)
 
-### How to run the test suite
-
-```console
-rails test
-```
-
-### Deployment instructions
+### Development environment setup
 
 After cloning the repository and changing your current directory
 to the one representing the app, do the following.
@@ -45,3 +39,9 @@ rails server
 ```
 
 Now visit `localhost:3000` and watch the product working.
+
+### How to run the test suite
+
+```console
+rails test
+```
