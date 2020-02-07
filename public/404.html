@@ -1,0 +1,25 @@
+<!-- 
+  Priority order of Hosting responses:
+    1 - Reserved namespaces that begin with a /__/* path segment
+    2 - Configured redirects
+    3 - Exact-match static content
+    4 - Configured rewrites
+    5 - Custom 404 page
+    6 - Default 404 page
+
+  Since we're trusting on rewrites (rule 4) we cant have an exact match static content on the hosting directory.
+  But we need some file there in order to deploy hosting, this file is a Custom 404 page (rule 5). 
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+</head>
+<body>
+</body>
+</html>
+
