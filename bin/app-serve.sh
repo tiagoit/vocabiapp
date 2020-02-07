@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 cd app
-npm run dev
+./node_modules/.bin/next

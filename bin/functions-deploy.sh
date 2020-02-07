@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-# Build Next.JS React APP.
-cd app
-npm run build
+# Build React + NextJS APP
+./bin/build-app.sh
 
 # Deploy Cloud Functions + Firebase rules and indexes.
-cd ../functions
+cd functions
 npm run deploy
