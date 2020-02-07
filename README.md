@@ -11,14 +11,14 @@
 
   - Install app and functions NPM packages.
   ```
-  (cd app && npm i)
+  (cd next && npm i)
   (cd functions && npm i)
   ```
 
 ## Serve on localhost
   - NextJS app: 
   ```
-  ./bin/app-serve.sh
+  cd next && npm run dev
   ```
 
   - Cloud Functions with NextJS app:
