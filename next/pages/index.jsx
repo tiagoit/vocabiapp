@@ -1,6 +1,8 @@
 import Layout from '../components/Layout.jsx';
 import Link from 'next/link';
 
+import css from "../style.scss"
+
 const PostLink = props => (
   <li>
     <Link href={`/post?title=${props.title}`}>
@@ -18,6 +20,9 @@ export default function Blog() {
         <PostLink title="Learn Next.js is awesome" />
         <PostLink title="Deploy apps with Zeit" />
       </ul>
+      <div className={css.example}>
+      Style test
+      </div>
     </Layout>
   );
 }
