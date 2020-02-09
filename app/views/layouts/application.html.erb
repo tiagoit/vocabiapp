@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html class="h-100">
+<!--HEAD-->
+<%= render 'layouts/head' %>
+<body class="d-flex flex-column h-100">
+
+<!--HEADER-->
+<%= render 'layouts/header' %>
+
+<!--MAIN-->
+<main role="main" class="flex-shrink-0">
+  <div class="container">
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+    <% end %>
+
+    <%= yield %>
+  </div>
+</main>
+
+<!--FOOTER-->
+<%= render 'layouts/footer' %>
+
+<!--DEBUG-->
+<%#= debug(params) if Rails.env.development? %>
+</body>
+</html>

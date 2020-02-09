@@ -1,0 +1,36 @@
+<% provide(:title, "Home") %>
+
+<div class="row">
+  <div id="pos" class="col-12 col-sm-8 mb-3">
+    <h5>Parts of speech</h5>
+    <% @pos.each do |pos| %>
+      <div class="card my-2">
+        <div class="card-header">
+          <a class="card-link stretched-link" data-toggle="collapse" href="#<%= pos %>"><%= pos.capitalize %></a>
+        </div>
+
+        <div id="<%= pos %>" class="collapse" data-parent="#pos">
+          <div class="d-flex p-1 justify-content-around">
+            <% (1..5).each do |i| %>
+              <button type="button" class="btn btn-light">
+                <a href="/<%= pos %>/<%= i %>" class="stretched-link">Level <%= i %></a>
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-12 col-sm-4 mb-3">
+    <h5>Ranking</h5>
+    <ul class="list-group">
+      <% @ranking.each_with_index do |user, i| %>
+        <li class="list-group-item">
+          <%= i + 1 %>. <%= user.name %>
+          <span class='badge badge-success float-right mt-1'><%= user.score %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

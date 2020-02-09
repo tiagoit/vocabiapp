@@ -1,0 +1,13 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+// MAIN LAYOUT
+main > .container {
+  padding: 72px 16px 0;
+  max-width: 840px;
+}
+
+.footer {
+  background-color: #f5f5f5;
+}
+
+* { outline: none !important }
