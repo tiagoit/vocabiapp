@@ -22,8 +22,6 @@ export default class MyApp extends App {
         <Head>
           <title>Vocabiapp</title>
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-          <link href="https://fonts.googleapis.com/css?family=Modak&display=swap" rel="stylesheet" />
         </Head>
 
         <ThemeProvider theme={theme}>
@@ -31,11 +29,13 @@ export default class MyApp extends App {
           <CssBaseline />
           <Component {...pageProps} />
         </ThemeProvider>
-        
-        <style jsx global>{`
-          a { text-decoration: none; }
-        `}</style>
+
       </React.Fragment>
     );
   }
 }
+
+
+// <style jsx global>{`
+// a { text-decoration: none; }
+// `}</style>
