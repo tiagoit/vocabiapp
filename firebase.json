@@ -1,10 +1,9 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "public/build",
     "rewrites": [
       {
-        "source": "**/**",
-        "function": "nextEndpoint"
+        "source": "**/**"
       }
     ]
   },
