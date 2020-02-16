@@ -47,10 +47,10 @@ export default function ElevateAppBar() {
               VocabiApp
             </Link>
             <Link to="/signup">
-              <Button color="inherit">Sign up</Button>
+              <Button color="inherit">Signup</Button>
             </Link>
             <Link to="/login">
-              <Button color="inherit">Log in</Button>
+              <Button color="inherit">Login</Button>
             </Link>
           </Toolbar>
         </AppBar>

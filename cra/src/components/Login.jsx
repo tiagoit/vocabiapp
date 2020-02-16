@@ -51,14 +51,14 @@ export default () => {
     console.log(state);
   };
 
-  const handleResetPass = () => {
-    console.log('resrt pass');
-  };
+  // const handleResetPass = () => {
+  //   console.log('resrt pass');
+  // };
 
   return (
     <>
       <Box display="flex" alignItems="center" justifyContent="center" mt={3}>
-        <Typography variant="h4" component="h1">Log in</Typography>
+        <Typography variant="h4" component="h1">Login</Typography>
       </Box>
 
       <form noValidate autoComplete="off" className={classes.root} onSubmit={handleSubmit}>
@@ -82,17 +82,26 @@ export default () => {
         </FormControl>
 
         <FormControl>
-          <Button variant="contained" color="primary" type="submit">Log in</Button>
+          <Button variant="contained" color="primary" type="submit">Login</Button>
         </FormControl>
       </form>
 
-      <Box display="flex" justifyContent="center" mt={2}>
+      <Box my={4} mx="auto" width={320}><hr /></Box>
+
+      <Box my={2} display="flex" justifyContent="center">
+        <Button variant="outlined" color="secondary" type="submit">Login with Google</Button>
+      </Box>
+      <Box display="flex" justifyContent="center">
+        <Button variant="outlined" color="secondary" type="submit">Login with Facebook</Button>
+      </Box>
+
+      <Box display="flex" justifyContent="center" mt={3}>
         <Link to="/signup">Don&apos;t have an account?</Link>
       </Box>
 
-      <Box display="flex" justifyContent="center" mt={0}>
+      {/* <Box display="flex" justifyContent="center" mt={0}>
         <button onClick={handleResetPass}>Reset my password!</button>
-      </Box>
+      </Box> */}
     </>
   );
 };

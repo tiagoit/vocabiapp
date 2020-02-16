@@ -55,7 +55,7 @@ export default () => {
   return (
     <>
       <Box display="flex" alignItems="center" justifyContent="center" mt={3}>
-        <Typography variant="h4" component="h1">Sign up</Typography>
+        <Typography variant="h4" component="h1">Signup</Typography>
       </Box>
 
       <form noValidate autoComplete="off" className={classes.root} onSubmit={handleSubmit}>
@@ -80,19 +80,20 @@ export default () => {
         </FormControl>
 
         <FormControl>
-          <Button variant="contained" color="primary" type="submit">Sign up</Button>
+          <Button variant="contained" color="primary" type="submit">Signup</Button>
         </FormControl>
       </form>
 
       <Box my={4} mx="auto" width={320}><hr /></Box>
 
       <Box display="flex" justifyContent="center" my={2}>
-        <Button variant="outlined" color="secondary" type="submit">Sign up with Google</Button>
+        <Button variant="outlined" color="secondary" type="submit">Signup with Google</Button>
       </Box>
       <Box display="flex" justifyContent="center">
-        <Button variant="outlined" color="secondary" type="submit">Sign up with Facebook</Button>
+        <Button variant="outlined" color="secondary" type="submit">Signup with Facebook</Button>
       </Box>
-      <Box display="flex" justifyContent="center" mt={2}>
+
+      <Box display="flex" justifyContent="center" mt={3}>
         <Link to="/login">Already have an account?</Link>
       </Box>
     </>
