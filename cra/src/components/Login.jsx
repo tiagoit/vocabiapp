@@ -1,5 +1,10 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,12 +14,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const useStyles = makeStyles({
-  root: {
+import { loginUser } from '../actions';
+
+const styles = () => ({
+  form: {
     '& .MuiFormControl-root': {
       width: 220,
       display: 'block',
@@ -24,15 +31,22 @@ const useStyles = makeStyles({
       },
     },
   },
+  social: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: 200,
+    margin: 'auto',
+  },
 });
 
-export default () => {
-  const classes = useStyles();
+const Login = (props) => {
   const [state, setState] = React.useState({
     email: '',
     password: '',
     showPassword: false,
   });
+
+  const { classes, isLoggingIn, loginError, isAuthenticated } = props;
 
   const handleChange = (prop) => (event) => {
     setState({ ...state, [prop]: event.target.value });
@@ -48,20 +62,23 @@ export default () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(state);
+    const { dispatch } = props;
+    const { email, password } = state;
+    dispatch(loginUser(email, password));
   };
 
   // const handleResetPass = () => {
   //   console.log('resrt pass');
   // };
 
+  if (isAuthenticated) return <Redirect to="/play" />;
   return (
     <>
       <Box display="flex" alignItems="center" justifyContent="center" mt={3}>
         <Typography variant="h4" component="h1">Login</Typography>
       </Box>
 
-      <form noValidate autoComplete="off" className={classes.root} onSubmit={handleSubmit}>
+      <form className={classes.form} noValidate autoComplete="off" onSubmit={handleSubmit}>
         <TextField required id="email" label="Email" type="email" onChange={handleChange('email')} />
 
         <FormControl>
@@ -73,7 +90,11 @@ export default () => {
             onChange={handleChange('password')}
             endAdornment={(
               <InputAdornment position="end">
-                <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
                   {state.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
@@ -81,22 +102,29 @@ export default () => {
           />
         </FormControl>
 
+        {loginError && (
+          <Box display="flex" justifyContent="center">
+            <Typography component="p" color="secondary">
+              Incorrect email or password.
+            </Typography>
+          </Box>
+        )}
+
         <FormControl>
-          <Button variant="contained" color="primary" type="submit">Login</Button>
+          <Button variant="contained" color="primary" type="submit" disabled={isLoggingIn}>Login</Button>
         </FormControl>
+
       </form>
 
       <Box my={4} mx="auto" width={320}><hr /></Box>
 
-      <Box my={2} display="flex" justifyContent="center">
+      <Box className={classes.social}>
         <Button variant="outlined" color="secondary" type="submit">Login with Google</Button>
-      </Box>
-      <Box display="flex" justifyContent="center">
         <Button variant="outlined" color="secondary" type="submit">Login with Facebook</Button>
       </Box>
 
       <Box display="flex" justifyContent="center" mt={3}>
-        <Link to="/signup">Don&apos;t have an account?</Link>
+        <Link to="/signup" className={classes.link}>Don&apos;t have an account?</Link>
       </Box>
 
       {/* <Box display="flex" justifyContent="center" mt={0}>
@@ -105,3 +133,19 @@ export default () => {
     </>
   );
 };
+
+Login.propTypes = {
+  classes: PropTypes.object.isRequired,
+  isLoggingIn: PropTypes.bool.isRequired,
+  loginError: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  isLoggingIn: state.auth.isLoggingIn,
+  loginError: state.auth.loginError,
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default withStyles(styles)(connect(mapStateToProps)(Login));

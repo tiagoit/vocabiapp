@@ -52,6 +52,9 @@ export default function ElevateAppBar() {
             <Link to="/login">
               <Button color="inherit">Login</Button>
             </Link>
+            <Link to="/play">
+              <Button color="inherit">Play</Button>
+            </Link>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
