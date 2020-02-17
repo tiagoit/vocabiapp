@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -35,8 +36,9 @@ function ElevationScroll(props) {
   });
 }
 
-export default function ElevateAppBar() {
+const Header = (props) => {
   const classes = useStyles();
+  const { isAuthenticated, handleLogout } = props;
 
   return (
     <>
@@ -46,19 +48,39 @@ export default function ElevateAppBar() {
             <Link to="/" className={classes.title}>
               VocabiApp
             </Link>
-            <Link to="/signup">
-              <Button color="inherit">Signup</Button>
-            </Link>
-            <Link to="/login">
-              <Button color="inherit">Login</Button>
-            </Link>
-            <Link to="/play">
-              <Button color="inherit">Play</Button>
-            </Link>
+            {
+              !isAuthenticated && (
+                <>
+                  <Link to="/signup">
+                    <Button color="inherit">Signup</Button>
+                  </Link>
+                  <Link to="/login">
+                    <Button color="inherit">Login</Button>
+                  </Link>
+                </>
+              )
+            }
+            {
+              isAuthenticated && (
+                <>
+                  <Link to="/play">
+                    <Button color="inherit">Play</Button>
+                  </Link>
+                  <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                </>
+              )
+            }
           </Toolbar>
         </AppBar>
       </ElevationScroll>
       <Toolbar />
     </>
   );
-}
+};
+
+Header.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+};
+
+export default Header;

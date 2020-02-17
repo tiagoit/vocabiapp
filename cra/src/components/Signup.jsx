@@ -1,5 +1,11 @@
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable no-undef */
+/* eslint-disable object-curly-newline */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,11 +15,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const useStyles = makeStyles({
+import { signupUser } from '../actions';
+
+const styles = () => ({
   root: {
     '& .MuiFormControl-root': {
       width: 220,
@@ -26,14 +34,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default () => {
-  const classes = useStyles();
+const Signup = (props) => {
   const [state, setState] = React.useState({
     name: '',
     email: '',
     password: '',
     showPassword: false,
   });
+
+  const { classes, isSigningUp, signupError, isAuthenticated } = props;
+
 
   const handleChange = (prop) => (event) => {
     setState({ ...state, [prop]: event.target.value });
@@ -49,9 +59,12 @@ export default () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(state);
+    const { dispatch } = props;
+    const { name, email, password } = state;
+    dispatch(signupUser(name, email, password));
   };
 
+  if (isAuthenticated) return <Redirect to="/play" />;
   return (
     <>
       <Box display="flex" alignItems="center" justifyContent="center" mt={3}>
@@ -79,8 +92,16 @@ export default () => {
           />
         </FormControl>
 
+        {signupError && (
+          <Box display="flex" justifyContent="center">
+            <Typography component="p" color="secondary">
+              An error occurred, please try again.
+            </Typography>
+          </Box>
+        )}
+
         <FormControl>
-          <Button variant="contained" color="primary" type="submit">Signup</Button>
+          <Button variant="contained" color="primary" type="submit" disabled={isSigningUp}>Signup</Button>
         </FormControl>
       </form>
 
@@ -99,3 +120,20 @@ export default () => {
     </>
   );
 };
+
+
+Signup.propTypes = {
+  classes: PropTypes.object.isRequired,
+  isSigningUp: PropTypes.bool.isRequired,
+  signupError: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  isSigningUp: state.auth.isSigningUp,
+  signupError: state.auth.signupError,
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default withStyles(styles)(connect(mapStateToProps)(Signup));

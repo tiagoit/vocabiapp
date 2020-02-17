@@ -10,13 +10,19 @@ import Login from '../Login';
 import Signup from '../Signup';
 import Layout from './Layout';
 import Play from '../Play';
+import { logoutUser } from '../../actions';
 
 const App = (props) => {
+  const handleLogout = () => {
+    const { dispatch } = props;
+    dispatch(logoutUser());
+  };
+
   const { isAuthenticated, isVerifying } = props;
   return (
     <>
       <CssBaseline />
-      <Layout>
+      <Layout isAuthenticated={isAuthenticated} handleLogout={handleLogout}>
         <Switch>
           <Route exact path="/"><Home /></Route>
           <ProtectedRoute exact path="/play" component={Play} isAuthenticated={isAuthenticated} isVerifying={isVerifying} />
@@ -31,6 +37,7 @@ const App = (props) => {
 App.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   isVerifying: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
