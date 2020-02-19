@@ -1,3 +1,5 @@
+/* eslint-disable newline-per-chained-call */
+/* eslint-disable object-curly-newline */
 /* eslint-disable no-multi-spaces */
 
 import { firebaseApp } from '../firebase/firebase';
@@ -31,8 +33,9 @@ const verifySuccess = () => ({ type: VERIFY_SUCCESS });
 
 export const loginUser = (email, password) => (dispatch) => {
   dispatch(requestLogin());
-  firebaseApp.auth().signInWithEmailAndPassword(email, password).then((user) => {
-    dispatch(receiveLogin(user));
+  firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
+    const { uid, displayName } = firebaseApp.auth().currentUser;
+    dispatch(receiveLogin({ uid, displayName, email }));
   }).catch(() => {
     dispatch(loginError());
   });
@@ -40,9 +43,10 @@ export const loginUser = (email, password) => (dispatch) => {
 
 export const signupUser = (name, email, password) => (dispatch) => {
   dispatch(requestSignup());
-  firebaseApp.auth().createUserWithEmailAndPassword(email, password).then((user) => {
-    console.log('sigupUser: ', { user });
-    dispatch(receiveSignup(user));
+  firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(() => {
+    const { currentUser } = firebaseApp.auth();
+    currentUser.updateProfile({ displayName: name });
+    dispatch(receiveSignup({ uid: currentUser.uid, displayName: name, email }));
   }).catch(() => {
     dispatch(signupError());
   });
@@ -53,16 +57,15 @@ export const logoutUser = () => (dispatch) => {
   firebaseApp.auth().signOut().then(() => {
     dispatch(receiveLogout());
   }).catch(() => {
-    // Do something with the error if you want!
     dispatch(logoutError());
   });
 };
 
 export const verifyAuth = () => (dispatch) => {
   dispatch(verifyRequest());
-  firebaseApp.auth().onAuthStateChanged((user) => {
-    if (user !== null) {
-      dispatch(receiveLogin(user));
+  firebaseApp.auth().onAuthStateChanged(async (user) => {
+    if (user !== null && user.displayName) {
+      dispatch(receiveLogin({ uid: user.uid, displayName: user.displayName, email: user.email }));
     }
     dispatch(verifySuccess());
   });

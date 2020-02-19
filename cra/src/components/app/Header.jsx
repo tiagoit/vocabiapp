@@ -38,7 +38,7 @@ function ElevationScroll(props) {
 
 const Header = (props) => {
   const classes = useStyles();
-  const { isAuthenticated, handleLogout } = props;
+  const { user, isAuthenticated, handleLogout } = props;
 
   return (
     <>
@@ -63,6 +63,7 @@ const Header = (props) => {
             {
               isAuthenticated && (
                 <>
+                  {user.displayName}
                   <Link to="/play">
                     <Button color="inherit">Play</Button>
                   </Link>
@@ -79,6 +80,11 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
+  user: PropTypes.shape({
+    uid: PropTypes.string,
+    displayName: PropTypes.string,
+    email: PropTypes.string,
+  }).isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   handleLogout: PropTypes.func.isRequired,
 };

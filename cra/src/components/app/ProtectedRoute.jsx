@@ -23,7 +23,7 @@ const ProtectedRoute = ({
 );
 
 ProtectedRoute.propTypes = {
-  component: PropTypes.func.isRequired,
+  component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   isVerifying: PropTypes.bool.isRequired,
   location: PropTypes.object,

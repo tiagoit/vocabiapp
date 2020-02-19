@@ -116,12 +116,12 @@ const Login = (props) => {
 
       </form>
 
-      <Box my={4} mx="auto" width={320}><hr /></Box>
+      {/* <Box my={4} mx="auto" width={320}><hr /></Box>
 
       <Box className={classes.social}>
         <Button variant="outlined" color="secondary" type="submit">Login with Google</Button>
         <Button variant="outlined" color="secondary" type="submit">Login with Facebook</Button>
-      </Box>
+      </Box> */}
 
       <Box display="flex" justifyContent="center" mt={3}>
         <Link to="/signup" className={classes.link}>Don&apos;t have an account?</Link>

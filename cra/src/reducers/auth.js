@@ -23,7 +23,11 @@ export default (
     signupError: false,
     logoutError: false,
     isAuthenticated: false,
-    user: {},
+    user: {
+      uid: '',
+      displayName: '',
+      email: '',
+    },
   },
   action,
 ) => {
@@ -35,7 +39,7 @@ export default (
     case LOGIN_FAILURE:
       return { ...state, isLoggingIn: false, isAuthenticated: false, loginError: true };
     case SIGNUP_REQUEST:
-      return { ...state, isSigningUp: true, signupError: false };
+      return { ...state, isSigningUp: true, signupError: false, loginError: false };
     case SIGNUP_SUCCESS:
       return { ...state, isSigningUp: false, isAuthenticated: true, user: action.user };
     case SIGNUP_FAILURE:

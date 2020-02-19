@@ -39,29 +39,41 @@ const Signup = (props) => {
     name: '',
     email: '',
     password: '',
+    passwordConfirmation: '',
     showPassword: false,
+    showPasswordConfirmation: false,
+    formError: false,
   });
 
   const { classes, isSigningUp, signupError, isAuthenticated } = props;
 
-
   const handleChange = (prop) => (event) => {
-    setState({ ...state, [prop]: event.target.value });
+    setState({ ...state, formError: false, [prop]: event.target.value });
   };
 
   const handleClickShowPassword = () => {
     setState({ ...state, showPassword: !state.showPassword });
   };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+  const handleClickShowPasswordConfirmation = () => {
+    setState({ ...state, showPasswordConfirmation: !state.showPasswordConfirmation });
   };
+
+  const handleMouseDownPassword = (event) => event.preventDefault();
+  const handleMouseDownPasswordConfirmation = (event) => event.preventDefault();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { dispatch } = props;
-    const { name, email, password } = state;
-    dispatch(signupUser(name, email, password));
+
+    if (!state.name.length || !state.email.length) {
+      setState({ ...state, formError: 'Name and email are required!' });
+    } else if (state.password !== state.passwordConfirmation) {
+      setState({ ...state, formError: 'Password and confirmation doesn\t match!' });
+    } else {
+      const { dispatch } = props;
+      const { name, email, password } = state;
+      dispatch(signupUser(name, email, password));
+    }
   };
 
   if (isAuthenticated) return <Redirect to="/play" />;
@@ -92,6 +104,30 @@ const Signup = (props) => {
           />
         </FormControl>
 
+        <FormControl>
+          <InputLabel htmlFor="password-confirmation" required>Password confirmation</InputLabel>
+          <Input
+            id="password-confirmation"
+            type={state.showPasswordConfirmation ? 'text' : 'password'}
+            value={state.passwordConfirmation}
+            onChange={handleChange('passwordConfirmation')}
+            endAdornment={(
+              <InputAdornment position="end">
+                <IconButton aria-label="toggle password visibility" onClick={handleClickShowPasswordConfirmation} onMouseDown={handleMouseDownPasswordConfirmation}>
+                  {state.showPasswordConfirmation ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            )}
+          />
+        </FormControl>
+        {state.formError && (
+          <Box display="flex" justifyContent="center">
+            <Typography component="p" color="secondary">
+              {state.formError}
+            </Typography>
+          </Box>
+        )}
+
         {signupError && (
           <Box display="flex" justifyContent="center">
             <Typography component="p" color="secondary">
@@ -105,14 +141,14 @@ const Signup = (props) => {
         </FormControl>
       </form>
 
-      <Box my={4} mx="auto" width={320}><hr /></Box>
+      {/* <Box my={4} mx="auto" width={320}><hr /></Box>
 
       <Box display="flex" justifyContent="center" my={2}>
         <Button variant="outlined" color="secondary" type="submit">Signup with Google</Button>
       </Box>
       <Box display="flex" justifyContent="center">
         <Button variant="outlined" color="secondary" type="submit">Signup with Facebook</Button>
-      </Box>
+      </Box> */}
 
       <Box display="flex" justifyContent="center" mt={3}>
         <Link to="/login">Already have an account?</Link>

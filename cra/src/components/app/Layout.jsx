@@ -6,10 +6,13 @@ import PropTypes from 'prop-types';
 import Header from './Header';
 
 const Layout = (props) => {
-  const { children, isAuthenticated, handleLogout } = props;
+  const {
+    children, user, isAuthenticated, handleLogout,
+  } = props;
+
   return (
     <>
-      <Header isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+      <Header isAuthenticated={isAuthenticated} handleLogout={handleLogout} user={user} />
       <Container maxWidth="md" children={children} />
     </>
   );
@@ -17,6 +20,7 @@ const Layout = (props) => {
 
 Layout.propTypes = {
   children: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   handleLogout: PropTypes.func.isRequired,
 };
