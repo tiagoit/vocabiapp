@@ -4,6 +4,8 @@
 
 import { firebaseApp } from '../firebase/firebase';
 
+import { getConfig } from './config';
+
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -65,6 +67,7 @@ export const verifyAuth = () => (dispatch) => {
   dispatch(verifyRequest());
   firebaseApp.auth().onAuthStateChanged(async (user) => {
     if (user !== null && user.displayName) {
+      dispatch(getConfig());
       dispatch(receiveLogin({ uid: user.uid, displayName: user.displayName, email: user.email }));
     }
     dispatch(verifySuccess());

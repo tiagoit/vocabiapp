@@ -28,7 +28,7 @@ const App = (props) => {
         <Switch>
           <Route exact path="/"><Home /></Route>
           <ProtectedRoute exact path="/play" component={Play} isAuthenticated={isAuthenticated} isVerifying={isVerifying} user={user} />
-          <ProtectedRoute exact path="/lang/:way" component={Lang} isAuthenticated={isAuthenticated} isVerifying={isVerifying} user={user} />
+          <ProtectedRoute exact path="/lang/:sourceOrTarget" component={Lang} isAuthenticated={isAuthenticated} isVerifying={isVerifying} user={user} />
           <Route path="/login"><Login /></Route>
           <Route path="/signup"><Signup /></Route>
         </Switch>
