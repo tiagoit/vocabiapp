@@ -2,7 +2,7 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-multi-spaces */
 
-import { firebaseApp } from '../firebase/firebase';
+import { firebaseApp, db } from '../firebase/firebase';
 
 import { getConfig } from './config';
 
@@ -33,6 +33,18 @@ const logoutError   = () => ({ type: LOGOUT_FAILURE });
 const verifyRequest = () => ({ type: VERIFY_REQUEST });
 const verifySuccess = () => ({ type: VERIFY_SUCCESS });
 
+export const signupUser = (name, email, password) => (dispatch) => {
+  dispatch(requestSignup());
+  firebaseApp.auth().createUserWithEmailAndPassword(email, password).then((auth) => {
+    const { uid } = auth.user;
+    db.collection('users').doc(uid).set({ name, email }).then(() => {
+      dispatch(receiveSignup({ uid, name, email }));
+    });
+  }).catch(() => {
+    dispatch(signupError());
+  });
+};
+
 export const loginUser = (email, password) => (dispatch) => {
   dispatch(requestLogin());
   firebaseApp.auth().signInWithEmailAndPassword(email, password).then(() => {
@@ -40,17 +52,6 @@ export const loginUser = (email, password) => (dispatch) => {
     dispatch(receiveLogin({ uid, displayName, email }));
   }).catch(() => {
     dispatch(loginError());
-  });
-};
-
-export const signupUser = (name, email, password) => (dispatch) => {
-  dispatch(requestSignup());
-  firebaseApp.auth().createUserWithEmailAndPassword(email, password).then(() => {
-    const { currentUser } = firebaseApp.auth();
-    currentUser.updateProfile({ displayName: name });
-    dispatch(receiveSignup({ uid: currentUser.uid, displayName: name, email }));
-  }).catch(() => {
-    dispatch(signupError());
   });
 };
 

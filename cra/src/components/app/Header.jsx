@@ -52,10 +52,10 @@ const Header = (props) => {
               !isAuthenticated && (
                 <>
                   <Link to="/signup">
-                    <Button color="inherit">Signup</Button>
+                    <Button tabIndex="-1" color="inherit">Signup</Button>
                   </Link>
                   <Link to="/login">
-                    <Button color="inherit">Login</Button>
+                    <Button tabIndex="-1" color="inherit">Login</Button>
                   </Link>
                 </>
               )

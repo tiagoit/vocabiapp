@@ -23,12 +23,11 @@ import { loginUser } from '../actions';
 const styles = () => ({
   form: {
     '& .MuiFormControl-root': {
-      width: 220,
+      width: 280,
       display: 'block',
       margin: '20px auto',
-      '& > Button': {
-        width: '100%',
-      },
+      '& > Button': { width: '100%' },
+      '& .MuiInput-root': { width: '100%' },
     },
   },
   social: {
@@ -74,7 +73,7 @@ const Login = (props) => {
   if (isAuthenticated) return <Redirect to="/play" />;
   return (
     <>
-      <Box display="flex" alignItems="center" justifyContent="center" mt={3}>
+      <Box display="flex" alignItems="center" justifyContent="center" mt={4}>
         <Typography variant="h4" component="h1">Login</Typography>
       </Box>
 
@@ -91,6 +90,7 @@ const Login = (props) => {
             endAdornment={(
               <InputAdornment position="end">
                 <IconButton
+                  tabIndex="-1"
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}

@@ -24,12 +24,11 @@ import { signupUser } from '../actions';
 const styles = () => ({
   root: {
     '& .MuiFormControl-root': {
-      width: 220,
+      width: 280,
       display: 'block',
       margin: '20px auto',
-      '& > Button': {
-        width: '100%',
-      },
+      '& > Button': { width: '100%' },
+      '& .MuiInput-root': { width: '100%' },
     },
   },
 });
@@ -79,7 +78,7 @@ const Signup = (props) => {
   if (isAuthenticated) return <Redirect to="/play" />;
   return (
     <>
-      <Box display="flex" alignItems="center" justifyContent="center" mt={3}>
+      <Box display="flex" alignItems="center" justifyContent="center" mt={4}>
         <Typography variant="h4" component="h1">Signup</Typography>
       </Box>
 
@@ -96,7 +95,7 @@ const Signup = (props) => {
             onChange={handleChange('password')}
             endAdornment={(
               <InputAdornment position="end">
-                <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
+                <IconButton tabIndex="-1" aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
                   {state.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
@@ -113,7 +112,7 @@ const Signup = (props) => {
             onChange={handleChange('passwordConfirmation')}
             endAdornment={(
               <InputAdornment position="end">
-                <IconButton aria-label="toggle password visibility" onClick={handleClickShowPasswordConfirmation} onMouseDown={handleMouseDownPasswordConfirmation}>
+                <IconButton tabIndex="-1" aria-label="toggle password visibility" onClick={handleClickShowPasswordConfirmation} onMouseDown={handleMouseDownPasswordConfirmation}>
                   {state.showPasswordConfirmation ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>

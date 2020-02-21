@@ -53,7 +53,8 @@ const Lang = (props) => {
 
   const setLang = ({ target }) => {
     const button = (target.type !== 'button') ? target.parentElement : target;
-    const code = button.dataset.code;
+    const { code } = button.dataset;
+    console.log({ code });
   };
 
   const langList = languages.map((lang) => (
