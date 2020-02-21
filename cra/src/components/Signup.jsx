@@ -19,7 +19,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-import { signupUser } from '../actions';
+import { signupUser } from '../redux/actions';
 
 const styles = () => ({
   root: {

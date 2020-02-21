@@ -1,4 +1,5 @@
 /* eslint-disable object-curly-newline */
+
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -11,6 +12,7 @@ import {
   LOGOUT_FAILURE,
   VERIFY_REQUEST,
   VERIFY_SUCCESS,
+  USER_UPDATE,
 } from '../actions';
 
 export default (
@@ -25,8 +27,10 @@ export default (
     isAuthenticated: false,
     user: {
       uid: '',
-      displayName: '',
+      name: '',
       email: '',
+      sourceLang: '',
+      targetLang: '',
     },
   },
   action,
@@ -54,6 +58,8 @@ export default (
       return { ...state, isVerifying: true, verifyingError: false };
     case VERIFY_SUCCESS:
       return { ...state, isVerifying: false };
+    case USER_UPDATE:
+      return { ...state, user: action.user };
     default:
       return state;
   }

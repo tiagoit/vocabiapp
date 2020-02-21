@@ -12,7 +12,7 @@ import Signup from '../Signup';
 import Layout from './Layout';
 import Play from '../Play';
 import Lang from '../Lang';
-import { logoutUser } from '../../actions';
+import { logoutUser } from '../../redux/actions';
 
 const App = (props) => {
   const handleLogout = () => {

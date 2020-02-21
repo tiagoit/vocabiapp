@@ -18,7 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-import { loginUser } from '../actions';
+import { loginUser } from '../redux/actions';
 
 const styles = () => ({
   form: {
