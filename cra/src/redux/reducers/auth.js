@@ -12,7 +12,6 @@ import {
   LOGOUT_FAILURE,
   VERIFY_REQUEST,
   VERIFY_SUCCESS,
-  USER_UPDATE,
 } from '../actions';
 
 export default (
@@ -25,13 +24,6 @@ export default (
     signupError: false,
     logoutError: false,
     isAuthenticated: false,
-    user: {
-      uid: '',
-      name: '',
-      email: '',
-      sourceLang: '',
-      targetLang: '',
-    },
   },
   action,
 ) => {
@@ -39,27 +31,25 @@ export default (
     case LOGIN_REQUEST:
       return { ...state, isLoggingIn: true, loginError: false };
     case LOGIN_SUCCESS:
-      return { ...state, isLoggingIn: false, isAuthenticated: true, user: action.user };
+      return { ...state, isLoggingIn: false, isAuthenticated: true };
     case LOGIN_FAILURE:
       return { ...state, isLoggingIn: false, isAuthenticated: false, loginError: true };
     case SIGNUP_REQUEST:
       return { ...state, isSigningUp: true, signupError: false, loginError: false };
     case SIGNUP_SUCCESS:
-      return { ...state, isSigningUp: false, isAuthenticated: true, user: action.user };
+      return { ...state, isSigningUp: false, isAuthenticated: true };
     case SIGNUP_FAILURE:
       return { ...state, isSigningUp: false, isAuthenticated: false, signupError: true };
     case LOGOUT_REQUEST:
       return { ...state, isLoggingOut: true, logoutError: false };
     case LOGOUT_SUCCESS:
-      return { ...state, isLoggingOut: false, isAuthenticated: false, user: {} };
+      return { ...state, isLoggingOut: false, isAuthenticated: false };
     case LOGOUT_FAILURE:
       return { ...state, isLoggingOut: false, logoutError: true };
     case VERIFY_REQUEST:
       return { ...state, isVerifying: true, verifyingError: false };
     case VERIFY_SUCCESS:
       return { ...state, isVerifying: false };
-    case USER_UPDATE:
-      return { ...state, user: action.user };
     default:
       return state;
   }

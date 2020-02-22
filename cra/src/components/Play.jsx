@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const Play = (props) => {
-  const { config } = props;
+  const { user } = props;
 
-  if (!config.sourceLang) return <Redirect to="/lang/source" />;
-  if (!config.targetLang) return <Redirect to="/lang/target" />;
+  if (!user.sourceLang) return <Redirect to="/lang/source" />;
+  if (!user.targetLang) return <Redirect to="/lang/target" />;
   return (
     <>
       <h1>Play</h1>
@@ -18,11 +18,11 @@ const Play = (props) => {
 };
 
 Play.propTypes = {
-  config: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  config: state.config,
+  user: state.users.user,
 });
 
 export default connect(mapStateToProps)(Play);

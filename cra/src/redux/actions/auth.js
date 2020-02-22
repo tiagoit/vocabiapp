@@ -2,7 +2,8 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-multi-spaces */
 
-import { firebaseApp, db } from '../../firebase/firebase';
+import { firebaseApp } from '../../firebase/firebase';
+import { getUser, setUser } from './users';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -22,25 +23,23 @@ export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 export const USER_UPDATE = 'USER_UPDATE';
 
 const requestLogin  = () => ({ type: LOGIN_REQUEST });
-const receiveLogin  = (user) => ({ type: LOGIN_SUCCESS, user });
+const receiveLogin  = () => ({ type: LOGIN_SUCCESS });
 const loginError    = () => ({ type: LOGIN_FAILURE });
 const requestSignup = () => ({ type: SIGNUP_REQUEST });
-const receiveSignup = (user) => ({ type: SIGNUP_SUCCESS, user });
+const receiveSignup = () => ({ type: SIGNUP_SUCCESS });
 const signupError   = () => ({ type: SIGNUP_FAILURE });
 const requestLogout = () => ({ type: LOGOUT_REQUEST });
 const receiveLogout = () => ({ type: LOGOUT_SUCCESS });
 const logoutError   = () => ({ type: LOGOUT_FAILURE });
 const verifyRequest = () => ({ type: VERIFY_REQUEST });
 const verifySuccess = () => ({ type: VERIFY_SUCCESS });
-const receiveUser   = (user) => ({ type: USER_UPDATE, user });
 
 export const signupUser = (name, email, password) => (dispatch) => {
   dispatch(requestSignup());
   firebaseApp.auth().createUserWithEmailAndPassword(email, password).then((auth) => {
     const { uid } = auth.user;
-    db.collection('users').doc(uid).set({ name, email }).then(() => {
-      dispatch(receiveSignup({ uid, name, email }));
-    });
+    dispatch(setUser(uid, { uid, name, email }));
+    dispatch(receiveSignup());
   }).catch(() => {
     dispatch(signupError());
   });
@@ -49,9 +48,8 @@ export const signupUser = (name, email, password) => (dispatch) => {
 export const loginUser = (email, password) => (dispatch) => {
   dispatch(requestLogin());
   firebaseApp.auth().signInWithEmailAndPassword(email, password).then((auth) => {
-    // const { uid, displayName } = firebaseApp.auth().currentUser;
-    const { uid } = auth.user;
-    dispatch(receiveLogin({ uid, email }));
+    dispatch(getUser(auth.user.uid));
+    dispatch(receiveLogin());
   }).catch(() => {
     dispatch(loginError());
   });
@@ -69,16 +67,10 @@ export const logoutUser = () => (dispatch) => {
 export const verifyAuth = () => (dispatch) => {
   dispatch(verifyRequest());
   firebaseApp.auth().onAuthStateChanged(async (user) => {
-    if (user !== null && user.displayName) {
-      dispatch(receiveLogin({ uid: user.uid, displayName: user.displayName, email: user.email }));
+    if (user !== null) {
+      dispatch(receiveLogin());
+      dispatch(getUser(user.uid));
     }
     dispatch(verifySuccess());
-  });
-};
-
-export const updateUser = (uid, data) => (dispatch) => {
-  db.collection('users').doc(uid).set(data).then(() => {
-    dispatch(receiveUser({ uid, ...data }));
-    // dispatch(receiveSignup({ uid, name, email }));
   });
 };

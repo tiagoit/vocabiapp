@@ -66,10 +66,6 @@ const Login = (props) => {
     dispatch(loginUser(email, password));
   };
 
-  // const handleResetPass = () => {
-  //   console.log('resrt pass');
-  // };
-
   if (isAuthenticated) return <Redirect to="/play" />;
   return (
     <>

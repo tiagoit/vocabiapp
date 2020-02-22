@@ -48,7 +48,7 @@ function mapStateToProps(state) {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     isVerifying: state.auth.isVerifying,
-    user: state.auth.user,
+    user: state.users.user,
   };
 }
 export default connect(mapStateToProps)(App);
