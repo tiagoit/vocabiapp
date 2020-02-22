@@ -1,11 +1,14 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { updateUser } from '../redux/actions';
+
 
 const styles = () => ({
-  langsList: {
+  languagesList: {
     display: 'flex',
     flexWrap: 'wrap',
     '& > button': {
@@ -47,36 +50,48 @@ const languages = [
   { code: 'pl', name: 'Polish' },
 ];
 
-const Lang = (props) => {
-  const { classes } = props;
+const Language = (props) => {
+  const { classes, user, dispatch } = props;
   const { sourceOrTarget } = useParams();
+  const history = useHistory();
 
-  const setLang = ({ target }) => {
+  const setLanguage = (event) => {
+    console.log('setLanguage');
+    const { target } = event;
     const button = (target.type !== 'button') ? target.parentElement : target;
     const { code } = button.dataset;
-    console.log({ code });
+    dispatch(updateUser(user.uid, { [sourceOrTarget]: code }));
+    console.log(sourceOrTarget);
+    history.push((sourceOrTarget === 'source') ? '/language/target' : '/play');
+    // return (<Redirect to="/language/target" />);
+    // return (sourceOrTarget === 'source') ? <Redirect to="/language/target" /> : <Redirect to="/play" />;
   };
 
-  const langList = languages.map((lang) => (
-    <button type="button" key={lang.code} data-code={lang.code} onClick={setLang}>
-      <img src={`/flags/${lang.code}.png`} alt={lang.name} />
-      <span>{lang.name}</span>
+  const title = sourceOrTarget === 'source' ? 'I speak' : 'I want to learn';
+  const languagesList = languages.map((l) => (
+    <button type="button" key={l.code} data-code={l.code} onClick={setLanguage}>
+      <img src={`/flags/${l.code}.png`} alt={l.name} />
+      <span>{l.name}</span>
     </button>
   ));
-  const title = sourceOrTarget === 'source' ? 'I speak: ' : 'I want to learn:';
 
   return (
     <>
       <h1>{title}</h1>
-      <div className={classes.langsList}>
-        {langList}
-      </div>
+      <div className={classes.languagesList}>{languagesList}</div>
     </>
   );
 };
 
-Lang.propTypes = {
+Language.propTypes = {
   classes: PropTypes.object.isRequired,
+  user: PropTypes.shape({
+    uid: PropTypes.string,
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(Lang);
+const mapStateToProps = (state) => ({ user: state.users.user });
+export default withStyles(styles)(connect(mapStateToProps)(Language));

@@ -11,7 +11,7 @@ import Login from '../Login';
 import Signup from '../Signup';
 import Layout from './Layout';
 import Play from '../Play';
-import Lang from '../Lang';
+import Language from '../Language';
 import { logoutUser } from '../../redux/actions';
 
 const App = (props) => {
@@ -27,8 +27,8 @@ const App = (props) => {
       <Layout isAuthenticated={isAuthenticated} handleLogout={handleLogout} user={user}>
         <Switch>
           <Route exact path="/"><Home /></Route>
-          <ProtectedRoute exact path="/play" component={Play} isAuthenticated={isAuthenticated} isVerifying={isVerifying} user={user} />
-          <ProtectedRoute exact path="/lang/:sourceOrTarget" component={Lang} isAuthenticated={isAuthenticated} isVerifying={isVerifying} user={user} />
+          <ProtectedRoute exact path="/play" component={Play} isAuthenticated={isAuthenticated} isVerifying={isVerifying} />
+          <ProtectedRoute exact path="/language/:sourceOrTarget" component={Language} isAuthenticated={isAuthenticated} isVerifying={isVerifying} />
           <Route path="/login"><Login /></Route>
           <Route path="/signup"><Signup /></Route>
         </Switch>

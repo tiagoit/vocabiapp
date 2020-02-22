@@ -6,13 +6,12 @@ import PropTypes from 'prop-types';
 
 const Play = (props) => {
   const { user } = props;
-
-  if (!user.sourceLang) return <Redirect to="/lang/source" />;
-  if (!user.targetLang) return <Redirect to="/lang/target" />;
+  console.log(user);
+  if (!user.source) return <Redirect to="/language/source" />;
   return (
     <>
       <h1>Play</h1>
-      {}
+      {user.name}
     </>
   );
 };
