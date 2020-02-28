@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -39,7 +40,12 @@ function ElevationScroll(props) {
 
 const Header = (props) => {
   const classes = useStyles();
-  const { user, isAuthenticated, handleLogout } = props;
+  const {
+    user,
+    isAuthenticated,
+    handleLogout,
+    isLoading,
+  } = props;
 
   return (
     <>
@@ -75,6 +81,7 @@ const Header = (props) => {
               )
             }
           </Toolbar>
+          {isLoading && <LinearProgress color="secondary" />}
         </AppBar>
       </ElevationScroll>
       <Toolbar />
@@ -90,6 +97,7 @@ Header.propTypes = {
   }).isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   handleLogout: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default Header;

@@ -19,7 +19,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-import { signupUserAction, signupErrorAction } from '../redux/actions';
+import { signupUserAction, signupErrorAction, startLoadAction } from '../redux/actions';
 
 const styles = () => ({
   root: {
@@ -84,6 +84,7 @@ const Signup = (props) => {
     } else {
       const { name, email, password } = state;
       dispatch(signupUserAction(name, email, password));
+      dispatch(startLoadAction('signup'));
     }
   };
 

@@ -20,11 +20,22 @@ const App = (props) => {
     dispatch(logoutUserAction());
   };
 
-  const { isAuthenticated, isVerifying, user } = props;
+  const {
+    isAuthenticated,
+    isVerifying,
+    isLoading,
+    user,
+  } = props;
+
   return (
     <>
       <CssBaseline />
-      <Layout isAuthenticated={isAuthenticated} handleLogout={handleLogout} user={user}>
+      <Layout
+        isAuthenticated={isAuthenticated}
+        handleLogout={handleLogout}
+        isLoading={isLoading}
+        user={user}
+      >
         <Switch>
           <Route exact path="/"><Home /></Route>
           <ProtectedRoute exact path="/play" component={Play} isAuthenticated={isAuthenticated} isVerifying={isVerifying} />
@@ -40,6 +51,7 @@ const App = (props) => {
 App.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   isVerifying: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
@@ -48,6 +60,7 @@ function mapStateToProps(state) {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     isVerifying: state.auth.isVerifying,
+    isLoading: state.app.isLoading,
     user: state.users.user,
   };
 }

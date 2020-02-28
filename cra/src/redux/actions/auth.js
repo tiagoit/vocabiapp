@@ -4,6 +4,8 @@
 
 import { firebaseApp } from '../../firebase/firebase';
 import { getUserAction, setUserAction } from './users';
+import { stopLoadAction } from './app';
+
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -43,6 +45,8 @@ export const signupUserAction = (name, email, password) => (dispatch) => {
     dispatch(receiveSignupAction());
   }).catch((err) => {
     dispatch(signupErrorAction(err.message));
+  }).finally(() => {
+    dispatch(stopLoadAction('signup'));
   });
 };
 
