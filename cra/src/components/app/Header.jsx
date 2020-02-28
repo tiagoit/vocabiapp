@@ -22,6 +22,7 @@ const useStyles = makeStyles({
     fontSize: 36,
     letterSpacing: 1.5,
     lineHeight: 'inherit',
+    textShadow: '2px 1px cadetblue',
   },
 });
 

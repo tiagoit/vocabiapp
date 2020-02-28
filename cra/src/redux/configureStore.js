@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { verifyAuth } from './actions';
+import { verifyAuthAction } from './actions';
 import rootReducer from './reducers';
 
 export default function configureStore(persistedState) {
@@ -10,6 +10,6 @@ export default function configureStore(persistedState) {
     applyMiddleware(thunkMiddleware),
   );
 
-  store.dispatch(verifyAuth());
+  store.dispatch(verifyAuthAction());
   return store;
 }

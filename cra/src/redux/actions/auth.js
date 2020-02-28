@@ -3,7 +3,7 @@
 /* eslint-disable no-multi-spaces */
 
 import { firebaseApp } from '../../firebase/firebase';
-import { getUser, setUser } from './users';
+import { getUserAction, setUserAction } from './users';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -22,55 +22,57 @@ export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 
 export const USER_UPDATE = 'USER_UPDATE';
 
-const requestLogin  = () => ({ type: LOGIN_REQUEST });
-const receiveLogin  = () => ({ type: LOGIN_SUCCESS });
-const loginError    = () => ({ type: LOGIN_FAILURE });
-const requestSignup = () => ({ type: SIGNUP_REQUEST });
-const receiveSignup = () => ({ type: SIGNUP_SUCCESS });
-const signupError   = () => ({ type: SIGNUP_FAILURE });
-const requestLogout = () => ({ type: LOGOUT_REQUEST });
-const receiveLogout = () => ({ type: LOGOUT_SUCCESS });
-const logoutError   = () => ({ type: LOGOUT_FAILURE });
-const verifyRequest = () => ({ type: VERIFY_REQUEST });
-const verifySuccess = () => ({ type: VERIFY_SUCCESS });
+const requestLoginAction  = () => ({ type: LOGIN_REQUEST });
+const receiveLoginAction  = () => ({ type: LOGIN_SUCCESS });
+const loginErrorAction    = () => ({ type: LOGIN_FAILURE });
+const requestSignupAction = () => ({ type: SIGNUP_REQUEST });
+const receiveSignupAction = () => ({ type: SIGNUP_SUCCESS });
+const requestLogoutAction = () => ({ type: LOGOUT_REQUEST });
+const receiveLogoutAction = () => ({ type: LOGOUT_SUCCESS });
+const logoutErrorAction   = () => ({ type: LOGOUT_FAILURE });
+const verifyRequestAction = () => ({ type: VERIFY_REQUEST });
+const verifySuccessAction = () => ({ type: VERIFY_SUCCESS });
 
-export const signupUser = (name, email, password) => (dispatch) => {
-  dispatch(requestSignup());
+export const signupErrorAction = (message) => ({ type: SIGNUP_FAILURE, message });
+
+export const signupUserAction = (name, email, password) => (dispatch) => {
+  dispatch(requestSignupAction());
   firebaseApp.auth().createUserWithEmailAndPassword(email, password).then((auth) => {
     const { uid } = auth.user;
-    dispatch(setUser(uid, { uid, name, email }));
-    dispatch(receiveSignup());
-  }).catch(() => {
-    dispatch(signupError());
+    dispatch(setUserAction(uid, { uid, name, email }));
+    dispatch(receiveSignupAction());
+  }).catch((err) => {
+    dispatch(signupErrorAction(err.message));
   });
 };
 
-export const loginUser = (email, password) => (dispatch) => {
-  dispatch(requestLogin());
+
+export const loginUserAction = (email, password) => (dispatch) => {
+  dispatch(requestLoginAction());
   firebaseApp.auth().signInWithEmailAndPassword(email, password).then((auth) => {
-    dispatch(getUser(auth.user.uid));
-    dispatch(receiveLogin());
+    dispatch(getUserAction(auth.user.uid));
+    dispatch(receiveLoginAction());
   }).catch(() => {
-    dispatch(loginError());
+    dispatch(loginErrorAction());
   });
 };
 
-export const logoutUser = () => (dispatch) => {
-  dispatch(requestLogout());
+export const logoutUserAction = () => (dispatch) => {
+  dispatch(requestLogoutAction());
   firebaseApp.auth().signOut().then(() => {
-    dispatch(receiveLogout());
+    dispatch(receiveLogoutAction());
   }).catch(() => {
-    dispatch(logoutError());
+    dispatch(logoutErrorAction());
   });
 };
 
-export const verifyAuth = () => (dispatch) => {
-  dispatch(verifyRequest());
+export const verifyAuthAction = () => (dispatch) => {
+  dispatch(verifyRequestAction());
   firebaseApp.auth().onAuthStateChanged(async (user) => {
     if (user !== null) {
-      dispatch(receiveLogin());
-      dispatch(getUser(user.uid));
+      dispatch(receiveLoginAction());
+      dispatch(getUserAction(user.uid));
     }
-    dispatch(verifySuccess());
+    dispatch(verifySuccessAction());
   });
 };

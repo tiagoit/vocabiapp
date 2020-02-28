@@ -18,7 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-import { loginUser } from '../redux/actions';
+import { loginUserAction } from '../redux/actions';
 
 const styles = () => ({
   form: {
@@ -63,7 +63,7 @@ const Login = (props) => {
     event.preventDefault();
     const { dispatch } = props;
     const { email, password } = state;
-    dispatch(loginUser(email, password));
+    dispatch(loginUserAction(email, password));
   };
 
   if (isAuthenticated) return <Redirect to="/play" />;
@@ -133,7 +133,7 @@ const Login = (props) => {
 Login.propTypes = {
   classes: PropTypes.object.isRequired,
   isLoggingIn: PropTypes.bool.isRequired,
-  loginError: PropTypes.bool.isRequired,
+  loginError: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };

@@ -19,7 +19,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-import { signupUser } from '../redux/actions';
+import { signupUserAction, signupErrorAction } from '../redux/actions';
 
 const styles = () => ({
   root: {
@@ -30,6 +30,17 @@ const styles = () => ({
       '& > Button': { width: '100%' },
       '& .MuiInput-root': { width: '100%' },
     },
+    '& .error-message': {
+      width: 'calc(100% - 40px)',
+      position: 'absolute',
+      marginTop: '-8px',
+      '& p': {
+        fontSize: '14px',
+        fontWeight: 'bold',
+        color: 'darkcyan',
+      },
+    },
+    '& .submit-button': { 'margin-top': '44px' },
   },
 });
 
@@ -41,13 +52,13 @@ const Signup = (props) => {
     passwordConfirmation: '',
     showPassword: false,
     showPasswordConfirmation: false,
-    formError: false,
   });
 
-  const { classes, isSigningUp, signupError, isAuthenticated } = props;
+  const { classes, dispatch, isAuthenticated, isSigningUp, signupError } = props;
 
   const handleChange = (prop) => (event) => {
-    setState({ ...state, formError: false, [prop]: event.target.value });
+    dispatch(signupErrorAction(''));
+    setState({ ...state, [prop]: event.target.value });
   };
 
   const handleClickShowPassword = () => {
@@ -64,14 +75,15 @@ const Signup = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!state.name.length || !state.email.length) {
-      setState({ ...state, formError: 'Name and email are required!' });
+    if (!state.name.length) {
+      dispatch(signupErrorAction('Name is required.'));
+    } else if (!state.email.length) {
+      dispatch(signupErrorAction('Email is required.'));
     } else if (state.password !== state.passwordConfirmation) {
-      setState({ ...state, formError: 'Password and confirmation doesn\t match!' });
+      dispatch(signupErrorAction('Password and confirmation doesn\t match.'));
     } else {
-      const { dispatch } = props;
       const { name, email, password } = state;
-      dispatch(signupUser(name, email, password));
+      dispatch(signupUserAction(name, email, password));
     }
   };
 
@@ -119,23 +131,16 @@ const Signup = (props) => {
             )}
           />
         </FormControl>
-        {state.formError && (
-          <Box display="flex" justifyContent="center">
-            <Typography component="p" color="secondary">
-              {state.formError}
-            </Typography>
-          </Box>
-        )}
 
         {signupError && (
-          <Box display="flex" justifyContent="center">
-            <Typography component="p" color="secondary">
-              An error occurred, please try again.
+          <Box display="flex" justifyContent="center" className="error-message">
+            <Typography component="p">
+              {signupError}
             </Typography>
           </Box>
         )}
 
-        <FormControl>
+        <FormControl className="submit-button">
           <Button variant="contained" color="primary" type="submit" disabled={isSigningUp}>Signup</Button>
         </FormControl>
       </form>
@@ -160,7 +165,7 @@ const Signup = (props) => {
 Signup.propTypes = {
   classes: PropTypes.object.isRequired,
   isSigningUp: PropTypes.bool.isRequired,
-  signupError: PropTypes.bool.isRequired,
+  signupError: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };

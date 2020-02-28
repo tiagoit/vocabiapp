@@ -3,8 +3,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect, useParams, useHistory } from 'react-router-dom';
-import { updateUser } from '../redux/actions';
+import { useParams, useHistory } from 'react-router-dom';
+import { updateUserAction } from '../redux/actions';
 
 
 const styles = () => ({
@@ -60,7 +60,7 @@ const Language = (props) => {
     const { target } = event;
     const button = (target.type !== 'button') ? target.parentElement : target;
     const { code } = button.dataset;
-    dispatch(updateUser(user.uid, { [sourceOrTarget]: code }));
+    dispatch(updateUserAction(user.uid, { [sourceOrTarget]: code }));
     console.log(sourceOrTarget);
     history.push((sourceOrTarget === 'source') ? '/language/target' : '/play');
     // return (<Redirect to="/language/target" />);

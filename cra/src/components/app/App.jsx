@@ -12,12 +12,12 @@ import Signup from '../Signup';
 import Layout from './Layout';
 import Play from '../Play';
 import Language from '../Language';
-import { logoutUser } from '../../redux/actions';
+import { logoutUserAction } from '../../redux/actions';
 
 const App = (props) => {
   const handleLogout = () => {
     const { dispatch } = props;
-    dispatch(logoutUser());
+    dispatch(logoutUserAction());
   };
 
   const { isAuthenticated, isVerifying, user } = props;
