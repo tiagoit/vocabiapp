@@ -82,9 +82,9 @@ const Signup = (props) => {
     } else if (state.password !== state.passwordConfirmation) {
       dispatch(signupErrorAction('Password and confirmation doesn\t match.'));
     } else {
+      dispatch(startLoadAction('signup'));
       const { name, email, password } = state;
       dispatch(signupUserAction(name, email, password));
-      dispatch(startLoadAction('signup'));
     }
   };
 
@@ -135,9 +135,7 @@ const Signup = (props) => {
 
         {signupError && (
           <Box display="flex" justifyContent="center" className="error-message">
-            <Typography component="p">
-              {signupError}
-            </Typography>
+            <Typography component="p">{signupError}</Typography>
           </Box>
         )}
 

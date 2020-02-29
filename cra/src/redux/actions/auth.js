@@ -26,7 +26,6 @@ export const USER_UPDATE = 'USER_UPDATE';
 
 const requestLoginAction  = () => ({ type: LOGIN_REQUEST });
 const receiveLoginAction  = () => ({ type: LOGIN_SUCCESS });
-const loginErrorAction    = () => ({ type: LOGIN_FAILURE });
 const requestSignupAction = () => ({ type: SIGNUP_REQUEST });
 const receiveSignupAction = () => ({ type: SIGNUP_SUCCESS });
 const requestLogoutAction = () => ({ type: LOGOUT_REQUEST });
@@ -35,39 +34,37 @@ const logoutErrorAction   = () => ({ type: LOGOUT_FAILURE });
 const verifyRequestAction = () => ({ type: VERIFY_REQUEST });
 const verifySuccessAction = () => ({ type: VERIFY_SUCCESS });
 
+export const loginErrorAction = (message) => ({ type: LOGIN_FAILURE, message });
 export const signupErrorAction = (message) => ({ type: SIGNUP_FAILURE, message });
 
 export const signupUserAction = (name, email, password) => (dispatch) => {
   dispatch(requestSignupAction());
-  firebaseApp.auth().createUserWithEmailAndPassword(email, password).then((auth) => {
-    const { uid } = auth.user;
-    dispatch(setUserAction(uid, { uid, name, email }));
-    dispatch(receiveSignupAction());
-  }).catch((err) => {
-    dispatch(signupErrorAction(err.message));
-  }).finally(() => {
-    dispatch(stopLoadAction('signup'));
-  });
+  firebaseApp.auth().createUserWithEmailAndPassword(email, password)
+    .then((auth) => {
+      dispatch(setUserAction(auth.user.uid, { uid: auth.user.uid, name, email }));
+      dispatch(receiveSignupAction());
+    })
+    .catch((err) => dispatch(signupErrorAction(err.message)))
+    .finally(() => dispatch(stopLoadAction('signup')));
 };
 
 
 export const loginUserAction = (email, password) => (dispatch) => {
   dispatch(requestLoginAction());
-  firebaseApp.auth().signInWithEmailAndPassword(email, password).then((auth) => {
-    dispatch(getUserAction(auth.user.uid));
-    dispatch(receiveLoginAction());
-  }).catch(() => {
-    dispatch(loginErrorAction());
-  });
+  firebaseApp.auth().signInWithEmailAndPassword(email, password)
+    .then((auth) => {
+      dispatch(getUserAction(auth.user.uid));
+      dispatch(receiveLoginAction());
+    })
+    .catch((err) => dispatch(loginErrorAction(err.message)))
+    .finally(() => dispatch(stopLoadAction('login')));
 };
 
 export const logoutUserAction = () => (dispatch) => {
   dispatch(requestLogoutAction());
-  firebaseApp.auth().signOut().then(() => {
-    dispatch(receiveLogoutAction());
-  }).catch(() => {
-    dispatch(logoutErrorAction());
-  });
+  firebaseApp.auth().signOut()
+    .then(() => dispatch(receiveLogoutAction()))
+    .catch(() => dispatch(logoutErrorAction()));
 };
 
 export const verifyAuthAction = () => (dispatch) => {

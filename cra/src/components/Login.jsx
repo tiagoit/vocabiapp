@@ -18,7 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-import { loginUserAction } from '../redux/actions';
+import { loginUserAction, loginErrorAction, startLoadAction } from '../redux/actions';
 
 const styles = () => ({
   form: {
@@ -29,6 +29,17 @@ const styles = () => ({
       '& > Button': { width: '100%' },
       '& .MuiInput-root': { width: '100%' },
     },
+    '& .error-message': {
+      width: 'calc(100% - 40px)',
+      position: 'absolute',
+      marginTop: '-8px',
+      '& p': {
+        fontSize: '14px',
+        fontWeight: 'bold',
+        color: 'darkcyan',
+      },
+    },
+    '& .submit-button': { 'margin-top': '44px' },
   },
   social: {
     display: 'flex',
@@ -45,23 +56,20 @@ const Login = (props) => {
     showPassword: false,
   });
 
-  const { classes, isLoggingIn, loginError, isAuthenticated } = props;
+  const { classes, dispatch, isAuthenticated, isLoggingIn, loginError } = props;
 
   const handleChange = (prop) => (event) => {
+    dispatch(loginErrorAction(''));
     setState({ ...state, [prop]: event.target.value });
   };
 
-  const handleClickShowPassword = () => {
-    setState({ ...state, showPassword: !state.showPassword });
-  };
+  const handleClickShowPassword = () => setState({ ...state, showPassword: !state.showPassword });
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  const handleMouseDownPassword = (event) => event.preventDefault();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { dispatch } = props;
+    dispatch(startLoadAction('login'));
     const { email, password } = state;
     dispatch(loginUserAction(email, password));
   };
@@ -99,17 +107,14 @@ const Login = (props) => {
         </FormControl>
 
         {loginError && (
-          <Box display="flex" justifyContent="center">
-            <Typography component="p" color="secondary">
-              Incorrect email or password.
-            </Typography>
+          <Box display="flex" justifyContent="center" className="error-message">
+            <Typography component="p">{loginError}</Typography>
           </Box>
         )}
 
-        <FormControl>
+        <FormControl className="submit-button">
           <Button variant="contained" color="primary" type="submit" disabled={isLoggingIn}>Login</Button>
         </FormControl>
-
       </form>
 
       {/* <Box my={4} mx="auto" width={320}><hr /></Box>
