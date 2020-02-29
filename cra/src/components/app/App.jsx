@@ -7,8 +7,9 @@ import { PropTypes } from 'prop-types';
 
 import ProtectedRoute from './ProtectedRoute';
 import Home from '../Home';
-import Login from '../Login';
 import Signup from '../Signup';
+import Login from '../Login';
+import ResetPass from '../ResetPass';
 import Layout from './Layout';
 import Play from '../Play';
 import Language from '../Language';
@@ -42,6 +43,7 @@ const App = (props) => {
           <ProtectedRoute exact path="/language/:sourceOrTarget" component={Language} isAuthenticated={isAuthenticated} isVerifying={isVerifying} />
           <Route path="/login"><Login /></Route>
           <Route path="/signup"><Signup /></Route>
+          <Route path="/password-reset"><ResetPass /></Route>
         </Switch>
       </Layout>
     </>

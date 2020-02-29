@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 const Play = (props) => {
   const { user } = props;
-  console.log(user);
   if (!user.source) return <Redirect to="/language/source" />;
   return (
     <>

@@ -70,7 +70,7 @@ const Header = (props) => {
             {
               isAuthenticated && (
                 <>
-                  <Link to="/language">
+                  <Link to="/language/source">
                     <Button color="inherit">{user.name}</Button>
                   </Link>
                   <Link to="/play">

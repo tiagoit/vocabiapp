@@ -128,9 +128,9 @@ const Login = (props) => {
         <Link to="/signup" className={classes.link}>Don&apos;t have an account?</Link>
       </Box>
 
-      {/* <Box display="flex" justifyContent="center" mt={0}>
-        <button onClick={handleResetPass}>Reset my password!</button>
-      </Box> */}
+      <Box display="flex" justifyContent="center" mt={1}>
+        <Link to="/password-reset" className={classes.link}>Password reset</Link>
+      </Box>
     </>
   );
 };
