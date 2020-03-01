@@ -1,7 +1,6 @@
 const fs = require('fs');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-
 // posCodes = {
 //   n: 'noun', 2542
 //   v: 'verb', 1001
@@ -40,14 +39,14 @@ const dataLoaded = (err, data) => {
     if(count[pos] % wordsPerLevel[pos] === 0) { // increment level
       currentLevel[pos] ? currentLevel[pos]++ : currentLevel[pos] = 2;
     }
-    const l = currentLevel[pos] || 1;
+    const lvl = currentLevel[pos] || 1;
     if(validPosCodes.includes(pos)) {
-      if(count[pos] <= 10) words.push({ en, pos, l });
+      if(count[pos] <= 10) words.push({ en, pos, lvl });
     }
   };
   // console.log(words.filter((w) => w.pos === 'j'));
 
-  fs.writeFileSync('words.json', JSON.stringify(words));
+  fs.writeFileSync(__dirname + '/words.json', JSON.stringify(words));
 }
 
-fs.readFile('words.html', 'utf8', dataLoaded);
+fs.readFile(__dirname + '/words.html', 'utf8', dataLoaded);

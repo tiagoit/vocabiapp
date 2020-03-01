@@ -34,7 +34,7 @@ const languages = [
   // { code: 'fr', name: 'French' },
   // { code: 'de', name: 'German' },
   // { code: 'ja', name: 'Japanese' },
-  // { code: 'it', name: 'Italian' },
+  { code: 'it', name: 'Italian' },
   { code: 'en', name: 'English' },
   // { code: 'ko', name: 'Korean' },
   // { code: 'zh', name: 'Chinese' },

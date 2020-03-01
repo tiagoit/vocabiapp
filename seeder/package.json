@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/translate": "^5.2.0",
     "firebase-admin": "^8.9.2",
     "jsdom": "^16.2.0"
   }
