@@ -1,5 +1,7 @@
+/* eslint-disable no-multi-spaces */
 /* eslint-disable key-spacing */
 /* eslint-disable react/forbid-prop-types */
+
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,14 +11,13 @@ import Pos from './Pos';
 const Play = (props) => {
   const { user } = props;
   const partsOfSpeech = {
-    noun:         { levels: 5, en: 'Noun' },
-    pronoum:      { levels: 5, en: 'Pronoun' },
-    verb:         { levels: 5, en: 'Verb' },
-    adjective:    { levels: 5, en: 'Adjective' },
-    adverb:       { levels: 5, en: 'Adverb' },
-    preposition:  { levels: 5, en: 'Preposition' },
-    conjunction:  { levels: 5, en: 'Conjunction' },
-    interjection: { levels: 5, en: 'Interjection' },
+    noun:         { levels: 5, en: 'Noun',        description: '' },
+    pronoum:      { levels: 5, en: 'Pronoun',     description: '' },
+    verb:         { levels: 5, en: 'Verb',        description: '' },
+    adjective:    { levels: 5, en: 'Adjective',   description: '' },
+    adverb:       { levels: 5, en: 'Adverb',      description: '' },
+    preposition:  { levels: 5, en: 'Preposition', description: '' },
+    conjunction:  { levels: 5, en: 'Conjunction', description: '' },
   };
 
   if (user.uid && !user.source) return <Redirect to="/language/source" />;
