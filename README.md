@@ -50,6 +50,14 @@ Now visit `localhost:3000` and watch the product working.
 ```console
 rails test
 ```
+
+## Future features
+- Rebuild with Node and React.
+- Deploy to GCP.
+- Add feedback button on each question
+- Implement algorithm to activate/inactivate question based on feedback.
+- Implement algorithm to move questions between levels based on the question success ratio.
+
 ## 📞 Contact
 - **Tiago Ferreira** - [@tiagoit](https://github.com/tiagoit)
 
