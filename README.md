@@ -50,3 +50,7 @@ Now visit `localhost:3000` and watch the product working.
 ```console
 rails test
 ```
+## 📞 Contact
+- **Tiago Ferreira** - [@tiagoit](https://github.com/tiagoit)
+
+Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/tiagoit-dev/) or drop me a line at <tiagoitferreira@gmail.com>.
