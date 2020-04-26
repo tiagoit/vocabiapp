@@ -1,25 +1,25 @@
-# [Material Dashboard React Nodejs](https://www.creative-tim.com/live/material-dashboard-react-nodejs) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?text=https%3A%2F%2Fwww.creative-tim.com%2Fmaterial-dashboard-react-nodejs%20%20Material%20Dashboard%20React%20Nodejs%20is%20a%20Free%20Frontend%20Preset%20for%20Nodejs%20%E2%9D%A4%EF%B8%8F&source=webclient)
+# [Material Dashboard React](https://demos.creative-tim.com/material-dashboard-react/#/dashboard) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fcreativetimofficial.github.io%2Fmaterial-dashboard-react&text=Material%20Dashboard%20React%20-%20Free%20Bootstrap%20Admin%20Template&original_referer=https%3A%2F%2Fdemos.creative-tim.com%2Fmaterial-dashboard-react%2F%3F_ga%3D2.10428917.198078103.1532329372-1803433978.1528781151&via=creativetim&hashtags=react%2Cmaterial-ui)
 
-![version](https://img.shields.io/badge/version-1.0.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/material-dashboard-react-nodejs.svg?maxAge=2592000)](https://github.com/creativetimofficial/material-dashboard-react-nodejs/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/material-dashboard-react-nodejs.svg?maxAge=2592000)](https://github.com/creativetimofficial/material-dashboard-react-nodejs/issues-react?q=is%3Aissue+is%3Aclosed) [![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/creative-tim/) [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/E4aHAQy)
 
-![Product Gif](https://github.com/creativetimofficial/public-assets/blob/master/material-dashboard-react-nodejs/material-dashboard-react-nodejs.gif)
 
-Start your development with Material Dashboard React Nodejs, a free Material-UI Admin built for Node.js framework, the newest go-to technology for top companies. [Creative Tim](https://www.creative-tim.com/) partnered with [Udevoffice](https://udevoffice.com/) to provide a fully coded “frontend + backend” solution for you. It features a huge number of components that can help you create amazing websites and brings with itself innumerable advantages: the lightweight, fast, scalable and modern way to execute your next top app. 
+![version](https://img.shields.io/badge/version-1.6.0-blue.svg) ![license](https://img.shields.io/badge/license-MIT-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/material-dashboard-react.svg?maxAge=2592000)]() [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/material-dashboard-react.svg?maxAge=2592000)]() [![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/NIT-dgp/General.svg)](https://gitter.im/creative-tim/material-dashboard?utm_source=share-link&utm_medium=link&utm_campaign=share-link) [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/E4aHAQy)
 
-**Material Dashboard React Nodejs** comes with 30 implemented frontend components, which you can combine and modify to your liking using SASS files. Every element has multiple states for colour, style, hover and focus. Material Dashboard Laravel uses a framework built by our friend [Federico - Bootstrap Material Design](http://fezvrasta.github.io/bootstrap-material-design/), who did an amazing job creating the backbone for the material effects, animations, ripples, and transitions. Big thanks to his team for the effort and forward thinking they put into it. The package saves you tons of time. Instead of investing time in doing the frontend-backend integration, you have a boilerplate which does the heavy lifting for you. 
+![Product Gif](src/assets/github/md-react.gif)
 
-**COMPLEX DOCUMENTATION** 
+Material Dashboard React is a free Material-UI Admin with a fresh, new design inspired by Google's Material Design. We are very excited to introduce our take on the material concepts through an easy to use and beautiful set of components. Material Dashboard React was built over the popular Material-UI framework.
 
-Each element is well presented in very complex documentation. You can check the components [here](https://www.creative-tim.com/live/material-dashboard-react-nodejs/?start-page=documentation/buttons) and the foundation. 
+Material Dashboard React makes use of light, surface and movement. The general layout resembles sheets of paper following multiple different layers, so that the depth and order is obvious. The navigation stays mainly on the left sidebar and the content is on the right inside the main panel.
 
-**Example Pages** 
+Material Dashboard React comes with 5 color filter choices for both the sidebar and the card headers (blue, green, orange, red and purple) and an option to have a background image on the sidebar.
 
-If you want to get inspiration or just show something directly to your clients, you can jump-start your development with our pre-built example pages. You will be able to quickly set up the basic structure for your web project. View example pages [here](https://www.creative-tim.com/live/material-dashboard-react-nodejs/). 
+Material Dashboard React was created using [create-react-app](https://github.com/facebook/create-react-app) and it uses a framework built by our friend [Olivier - Material-UI v3.1.0](https://github.com/mui-org/material-ui), who did an amazing job creating the backbone for the material effects, animations, ripples and transitions. Big thanks to his team for the effort and forward thinking they put into it.
 
 Special thanks go to:
 + [React-chartist](https://github.com/fraserxu/react-chartist) for the wonderful charts.
 
 We are very excited to share this dashboard with you and we look forward to hearing your feedback!
+
+You can find the Github Repo here.
 
 ## Table of Contents
 
@@ -38,34 +38,37 @@ We are very excited to share this dashboard with you and we look forward to hear
 
 ## Versions
 
-[<img src="material-dashboard-react-app/src/assets/github/react.svg" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-react-nodejs)
-[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/nodejs-logo.jpg" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-react-nodejs)
+[<img src="src/assets/github/html.png" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard)
+[<img src="src/assets/github/react.svg" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-react)
+[<img src="src/assets/github/vuejs.png" width="60" height="60" />](https://www.creative-tim.com/product/vue-material-dashboard)
+[<img src="src/assets/github/angular.png" width="60" height="60" />](https://www.creative-tim.com/product/material-dashboard-angular2)
 
-| React & Nodejs |
-| --- |
-| [![Material Dashboard React Nodejs](https://s3.amazonaws.com/creativetim_bucket/products/157/thumb/opt_md_react_node_thumbnail.jpg)](https://www.creative-tim.com/product/material-dashboard-react-nodejs) 
+
+| HTML | React | Vue | Angular |
+| --- | --- | --- | --- |
+| [![Material Dashboard HTML](src/assets/github/opt_md_thumbnail.jpg)](https://www.creative-tim.com/product/material-dashboard) | [![Material Dashboard React](src/assets/github/opt_mdr_thumbnail.jpg)](https://www.creative-tim.com/product/material-dashboard-react) | [![Vue Material Dashboard ](src/assets/github/opt_md_vue_thumbnail.jpg)](https://www.creative-tim.com/product/vue-material-dashboard) | [![Material Dashboard Angular](src/assets/github/opt_md_angular_thumbnail.jpg)](https://www.creative-tim.com/product/material-dashboard-angular2)
 
 ## Demo
 
-| Dashboard | User Profile | Tables | Notification |
-| --- | --- | --- | --- |
-| [![Start page](material-dashboard-react-app/src/assets/github/dashboard.png)](https://www.creative-tim.com/live/material-dashboard-react-nodejs/dashboard) | [![User profile page](material-dashboard-react-app/src/assets/github/user.png)](https://www.creative-tim.com/live/material-dashboard-react-nodejs/user) | [![Tables page ](material-dashboard-react-app/src/assets/github/tables.png)](https://www.creative-tim.com/live/material-dashboard-react-nodejs/table) | [![Notification page](material-dashboard-react-app/src/assets/github/notifications.png)](https://www.creative-tim.com/live/material-dashboard-react-nodejs/notifications)
+| Dashboard | User Profile | Tables | Maps | Notification |
+| --- | --- | --- | --- | --- |
+| [![Start page](src/assets/github/dashboard.png)](https://demos.creative-tim.com/material-dashboard-react/#/dashboard) | [![User profile page](src/assets/github/user_profile.png)](https://demos.creative-tim.com/material-dashboard-react/#/user) | [![Tables page ](src/assets/github/tables.png)](https://demos.creative-tim.com/material-dashboard-react/#/table) | [![Maps Page](src/assets/github/maps.png)](https://demos.creative-tim.com/material-dashboard-react/#/maps) | [![Notification page](src/assets/github/notification.png)](https://demos.creative-tim.com/material-dashboard-react/#/notifications)
 
-[View More](https://www.creative-tim.com/live/material-dashboard-react-nodejs/dashboard).
+[View More](https://demos.creative-tim.com/material-dashboard-react/#/dashboard).
 
 
 ## Quick start
 
 Quick start options:
 
+- `npm i material-dashboard-react`
 - Clone the repo: `git clone https://github.com/creativetimofficial/material-dashboard-react-nodejs.git`.
 - [Download from Github](https://github.com/creativetimofficial/material-dashboard-react-nodejs/archive/master.zip).
-- [Download from Creative Tim](https://www.creative-tim.com/product/material-dashboard-react-nodejs).
-- Follow the [tutorial] (https://medium.com/udevoffice/how-to-setup-a-development-environment-using-node-js-and-docker-material-dashboard-react-d4a16220c759)
+- [Download from Creative Tim](https://www.creative-tim.com/product/material-dashboard-react).
 
 
 ## Documentation
-The documentation for the Material Dashboard React Nodejs is hosted at our [website](https://www.creative-tim.com/live/material-dashboard-react-nodejs/?start-page=documentation/buttons).
+The documentation for the Material Dashboard React is hosted at our [website](https://demos.creative-tim.com/material-dashboard-react/#/documentation/tutorial).
 
 
 ## File Structure
@@ -73,7 +76,7 @@ The documentation for the Material Dashboard React Nodejs is hosted at our [webs
 Within the download you'll find the following directories and files:
 
 ```
-material-dashboard-react-app
+material-dashboard-react
 .
 ├── CHANGELOG.md
 ├── ISSUE_TEMPLATE.md
@@ -176,13 +179,13 @@ material-dashboard-react-app
 
 At present, we officially aim to support the last two versions of the following browsers:
 
-<img src="material-dashboard-react-app/src/assets/github/chrome.png" width="64" height="64"> <img src="material-dashboard-react-app/src/assets/github/firefox.png" width="64" height="64"> <img src="material-dashboard-react-app/src/assets/github/edge.png" width="64" height="64"> <img src="material-dashboard-react-app/src/assets/github/safari.png" width="64" height="64"> <img src="material-dashboard-react-app/src/assets/github/opera.png" width="64" height="64">
+<img src="src/assets/github/chrome.png" width="64" height="64"> <img src="src/assets/github/firefox.png" width="64" height="64"> <img src="src/assets/github/edge.png" width="64" height="64"> <img src="src/assets/github/safari.png" width="64" height="64"> <img src="src/assets/github/opera.png" width="64" height="64">
 
 
 ## Resources
-- Demo: https://www.creative-tim.com/live/material-dashboard-react-nodejs
-- Download Page: https://www.creative-tim.com/product/material-dashboard-react-nodejs
-- Documentation: https://www.creative-tim.com/live/material-dashboard-react-nodejs/documentation/tutorial
+- Demo: https://demos.creative-tim.com/material-dashboard-react
+- Download Page: https://www.creative-tim.com/product/material-dashboard-react
+- Documentation: https://demos.creative-tim.com/material-dashboard-react/#/documentation/tutorial
 - License Agreement: https://www.creative-tim.com/license
 - Support: https://www.creative-tim.com/contact-us
 - Issues: [Github Issues Page](https://github.com/creativetimofficial/material-dashboard-react-nodejs/issues)
