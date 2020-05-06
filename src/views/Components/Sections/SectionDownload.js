@@ -7,7 +7,7 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
 // core components
-import styles from "assets/jss/material-kit-react/views/componentsSections/downloadStyle.js";
+import styles from "assets/jss/views/componentsSections/downloadStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -20,19 +20,12 @@ export default function SectionDownload() {
           <GridItem xs={12} sm={12} md={8}>
             <h2>Do you love this UI Kit?</h2>
             <h4>
-              Cause if you do, it can be yours for FREE. Hit the buttons below
-              to navigate to our website where you can find the kit. We also
-              have the Bootstrap 4 version on plain HTML. Start a new project or
-              give an old Bootstrap project a new look!
+              Cause if you do, it can be yours for FREE. Hit the buttons below to navigate to our website where you can find the kit. We
+              also have the Bootstrap 4 version on plain HTML. Start a new project or give an old Bootstrap project a new look!
             </h4>
           </GridItem>
           <GridItem xs={12} sm={8} md={6}>
-            <Button
-              color="primary"
-              size="lg"
-              href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-download-section"
-              target="_blank"
-            >
+            <Button color="primary" size="lg" href="https://www.creative-tim.com/product/ui-kit?ref=mkr-download-section" target="_blank">
               Free React Download
             </Button>
             <Button
@@ -52,14 +45,10 @@ export default function SectionDownload() {
             <h2>Want more?</h2>
             <h4>
               We{"'"}ve launched{" "}
-              <a
-                href="https://www.creative-tim.com/product/material-kit-pro-react?ref=mkr-download-section"
-                target="_blank"
-              >
+              <a href="https://www.creative-tim.com/product/material-kit-pro-react?ref=mkr-download-section" target="_blank">
                 Material Kit PRO React{" "}
               </a>
-              .It has a huge number of components, sections and example pages.
-              Start Your Development With A Badass Material-UI nspired by
+              .It has a huge number of components, sections and example pages. Start Your Development With A Badass Material-UI nspired by
               Material Design.
             </h4>
           </GridItem>

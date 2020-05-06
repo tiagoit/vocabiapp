@@ -15,12 +15,13 @@ import Button from "components/CustomButtons/Button.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 
-import styles from "assets/jss/material-kit-react/views/landingPage.js";
+import styles from "assets/jss/views/landingPage.js";
 
 // Sections for this page
 import ProductSection from "./Sections/ProductSection.js";
 import TeamSection from "./Sections/TeamSection.js";
 import WorkSection from "./Sections/WorkSection.js";
+import { PropTypes } from "prop-types";
 
 const dashboardRoutes = [];
 
@@ -34,12 +35,12 @@ export default function LandingPage(props) {
       <Header
         color="transparent"
         routes={dashboardRoutes}
-        brand="Material Kit React"
-        rightLinks={<HeaderLinks />}
+        brand="Vocabiapp"
+        rightLinks={<HeaderLinks history={props.history} />}
         fixed
         changeColorOnScroll={{
           height: 400,
-          color: "white"
+          color: "white",
         }}
         {...rest}
       />
@@ -49,19 +50,11 @@ export default function LandingPage(props) {
             <GridItem xs={12} sm={12} md={6}>
               <h1 className={classes.title}>Your Story Starts With Us.</h1>
               <h4>
-                Every landing page needs a small description after the big bold
-                title, that{"'"}s why we added this text here. Add here all the
-                information that can make you or your product create the first
-                impression.
+                Every landing page needs a small description after the big bold title, that{"'"}s why we added this text here. Add here all
+                the information that can make you or your product create the first impression.
               </h4>
               <br />
-              <Button
-                color="danger"
-                size="lg"
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ref=creativetim"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Button color="danger" size="lg" href="#" target="_blank" rel="noopener noreferrer">
                 <i className="fas fa-play" />
                 Watch video
               </Button>
@@ -80,3 +73,7 @@ export default function LandingPage(props) {
     </div>
   );
 }
+
+LandingPage.propTypes = {
+  history: PropTypes.object,
+};

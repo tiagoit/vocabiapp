@@ -14,7 +14,7 @@ import image1 from "assets/img/bg.jpg";
 import image2 from "assets/img/bg2.jpg";
 import image3 from "assets/img/bg3.jpg";
 
-import styles from "assets/jss/material-kit-react/views/componentsSections/carouselStyle.js";
+import styles from "assets/jss/views/componentsSections/carouselStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -26,7 +26,7 @@ export default function SectionCarousel() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false
+    autoplay: false,
   };
   return (
     <div className={classes.section}>
@@ -45,11 +45,7 @@ export default function SectionCarousel() {
                   </div>
                 </div>
                 <div>
-                  <img
-                    src={image2}
-                    alt="Second slide"
-                    className="slick-image"
-                  />
+                  <img src={image2} alt="Second slide" className="slick-image" />
                   <div className="slick-caption">
                     <h4>
                       <LocationOn className="slick-icons" />

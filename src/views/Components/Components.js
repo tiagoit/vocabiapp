@@ -28,7 +28,8 @@ import SectionLogin from "./Sections/SectionLogin.js";
 import SectionExamples from "./Sections/SectionExamples.js";
 import SectionDownload from "./Sections/SectionDownload.js";
 
-import styles from "assets/jss/material-kit-react/views/components.js";
+import styles from "assets/jss/views/components.js";
+import { PropTypes } from "prop-types";
 
 const useStyles = makeStyles(styles);
 
@@ -39,12 +40,12 @@ export default function Components(props) {
     <div>
       <Header
         brand="Material Kit React"
-        rightLinks={<HeaderLinks />}
+        rightLinks={<HeaderLinks history={props.history} />}
         fixed
         color="transparent"
         changeColorOnScroll={{
           height: 400,
-          color: "white"
+          color: "white",
         }}
         {...rest}
       />
@@ -54,9 +55,7 @@ export default function Components(props) {
             <GridItem>
               <div className={classes.brand}>
                 <h1 className={classes.title}>Material Kit React.</h1>
-                <h3 className={classes.subtitle}>
-                  A Badass Material-UI Kit based on Material Design.
-                </h3>
+                <h3 className={classes.subtitle}>A Badass Material-UI Kit based on Material Design.</h3>
               </div>
             </GridItem>
           </GridContainer>
@@ -88,3 +87,6 @@ export default function Components(props) {
     </div>
   );
 }
+Components.propTypes = {
+  history: PropTypes.object,
+};

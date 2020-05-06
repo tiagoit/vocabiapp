@@ -16,7 +16,7 @@ import CardFooter from "components/Card/CardFooter.js";
 import Button from "components/CustomButtons/Button.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 
-import styles from "assets/jss/material-kit-react/views/componentsSections/loginStyle.js";
+import styles from "assets/jss/views/componentsSections/loginStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -32,36 +32,14 @@ export default function SectionLogin() {
                 <CardHeader color="primary" className={classes.cardHeader}>
                   <h4>Login</h4>
                   <div className={classes.socialLine}>
-                    <Button
-                      justIcon
-                      href="#pablo"
-                      target="_blank"
-                      color="transparent"
-                      onClick={e => e.preventDefault()}
-                    >
+                    <Button justIcon href="#pablo" target="_blank" color="transparent" onClick={(e) => e.preventDefault()}>
                       <i className={classes.socialIcons + " fab fa-twitter"} />
                     </Button>
-                    <Button
-                      justIcon
-                      href="#pablo"
-                      target="_blank"
-                      color="transparent"
-                      onClick={e => e.preventDefault()}
-                    >
+                    <Button justIcon href="#pablo" target="_blank" color="transparent" onClick={(e) => e.preventDefault()}>
                       <i className={classes.socialIcons + " fab fa-facebook"} />
                     </Button>
-                    <Button
-                      justIcon
-                      href="#pablo"
-                      target="_blank"
-                      color="transparent"
-                      onClick={e => e.preventDefault()}
-                    >
-                      <i
-                        className={
-                          classes.socialIcons + " fab fa-google-plus-g"
-                        }
-                      />
+                    <Button justIcon href="#pablo" target="_blank" color="transparent" onClick={(e) => e.preventDefault()}>
+                      <i className={classes.socialIcons + " fab fa-google-plus-g"} />
                     </Button>
                   </div>
                 </CardHeader>
@@ -71,7 +49,7 @@ export default function SectionLogin() {
                     labelText="First Name..."
                     id="first"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       type: "text",
@@ -79,14 +57,14 @@ export default function SectionLogin() {
                         <InputAdornment position="end">
                           <People className={classes.inputIconsColor} />
                         </InputAdornment>
-                      )
+                      ),
                     }}
                   />
                   <CustomInput
                     labelText="Email..."
                     id="email"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       type: "email",
@@ -94,25 +72,23 @@ export default function SectionLogin() {
                         <InputAdornment position="end">
                           <Email className={classes.inputIconsColor} />
                         </InputAdornment>
-                      )
+                      ),
                     }}
                   />
                   <CustomInput
                     labelText="Password"
                     id="pass"
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
                     }}
                     inputProps={{
                       type: "password",
                       endAdornment: (
                         <InputAdornment position="end">
-                          <Icon className={classes.inputIconsColor}>
-                            lock_outline
-                          </Icon>
+                          <Icon className={classes.inputIconsColor}>lock_outline</Icon>
                         </InputAdornment>
                       ),
-                      autoComplete: "off"
+                      autoComplete: "off",
                     }}
                   />
                 </CardBody>

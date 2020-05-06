@@ -14,7 +14,7 @@ import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 
-import styles from "assets/jss/material-kit-react/components/customTabsStyle.js";
+import styles from "assets/jss/ui-kit/components/customTabsStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -28,7 +28,7 @@ export default function CustomTabs(props) {
   const { headerColor, plainTabs, tabs, title, rtlActive } = props;
   const cardTitle = classNames({
     [classes.cardTitle]: true,
-    [classes.cardTitleRTL]: rtlActive
+    [classes.cardTitleRTL]: rtlActive,
   });
   return (
     <Card plain={plainTabs}>
@@ -39,19 +39,14 @@ export default function CustomTabs(props) {
           onChange={handleChange}
           classes={{
             root: classes.tabsRoot,
-            indicator: classes.displayNone
+            indicator: classes.displayNone,
           }}
         >
           {tabs.map((prop, key) => {
             var icon = {};
             if (prop.tabIcon) {
               icon = {
-                icon:
-                  typeof prop.tabIcon === "string" ? (
-                    <Icon>{prop.tabIcon}</Icon>
-                  ) : (
-                    <prop.tabIcon />
-                  )
+                icon: typeof prop.tabIcon === "string" ? <Icon>{prop.tabIcon}</Icon> : <prop.tabIcon />,
               };
             }
             return (
@@ -60,7 +55,7 @@ export default function CustomTabs(props) {
                   root: classes.tabRootButton,
                   label: classes.tabLabel,
                   selected: classes.tabSelected,
-                  wrapper: classes.tabWrapper
+                  wrapper: classes.tabWrapper,
                 }}
                 key={key}
                 label={prop.tabName}
@@ -83,22 +78,15 @@ export default function CustomTabs(props) {
 }
 
 CustomTabs.propTypes = {
-  headerColor: PropTypes.oneOf([
-    "warning",
-    "success",
-    "danger",
-    "info",
-    "primary",
-    "rose"
-  ]),
+  headerColor: PropTypes.oneOf(["warning", "success", "danger", "info", "primary", "rose"]),
   title: PropTypes.string,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       tabName: PropTypes.string.isRequired,
       tabIcon: PropTypes.object,
-      tabContent: PropTypes.node.isRequired
+      tabContent: PropTypes.node.isRequired,
     })
   ),
   rtlActive: PropTypes.bool,
-  plainTabs: PropTypes.bool
+  plainTabs: PropTypes.bool,
 };

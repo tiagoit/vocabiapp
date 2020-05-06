@@ -13,7 +13,7 @@ import Button from "components/CustomButtons/Button.js";
 import landing from "assets/img/landing.jpg";
 import profile from "assets/img/profile.jpg";
 
-import styles from "assets/jss/material-kit-react/views/componentsSections/exampleStyle.js";
+import styles from "assets/jss/views/componentsSections/exampleStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -25,17 +25,7 @@ export default function SectionExamples() {
         <GridContainer justify="center">
           <GridItem xs={12} sm={12} md={6}>
             <Link to="landing-page" className={classes.link}>
-              <img
-                src={landing}
-                alt="..."
-                className={
-                  classes.imgRaised +
-                  " " +
-                  classes.imgRounded +
-                  " " +
-                  classes.imgFluid
-                }
-              />
+              <img src={landing} alt="..." className={classes.imgRaised + " " + classes.imgRounded + " " + classes.imgFluid} />
               <Button color="primary" size="lg" simple>
                 View landing page
               </Button>
@@ -43,17 +33,7 @@ export default function SectionExamples() {
           </GridItem>
           <GridItem xs={12} sm={12} md={6}>
             <Link to="profile-page" className={classes.link}>
-              <img
-                src={profile}
-                alt="..."
-                className={
-                  classes.imgRaised +
-                  " " +
-                  classes.imgRounded +
-                  " " +
-                  classes.imgFluid
-                }
-              />
+              <img src={profile} alt="..." className={classes.imgRaised + " " + classes.imgRounded + " " + classes.imgFluid} />
               <Button color="primary" size="lg" simple>
                 View profile page
               </Button>

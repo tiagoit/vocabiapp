@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
 // core components
-import styles from "assets/jss/material-kit-react/components/parallaxStyle.js";
+import styles from "assets/jss/ui-kit/components/parallaxStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -18,9 +18,7 @@ export default function Parallax(props) {
   } else {
     windowScrollTop = 0;
   }
-  const [transform, setTransform] = React.useState(
-    "translate3d(0," + windowScrollTop + "px,0)"
-  );
+  const [transform, setTransform] = React.useState("translate3d(0," + windowScrollTop + "px,0)");
   React.useEffect(() => {
     if (window.innerWidth >= 768) {
       window.addEventListener("scroll", resetTransform);
@@ -41,7 +39,7 @@ export default function Parallax(props) {
     [classes.parallax]: true,
     [classes.filter]: filter,
     [classes.small]: small,
-    [className]: className !== undefined
+    [className]: className !== undefined,
   });
   return (
     <div
@@ -49,7 +47,7 @@ export default function Parallax(props) {
       style={{
         ...style,
         backgroundImage: "url(" + image + ")",
-        transform: transform
+        transform: transform,
       }}
     >
       {children}
@@ -63,5 +61,5 @@ Parallax.propTypes = {
   children: PropTypes.node,
   style: PropTypes.string,
   image: PropTypes.string,
-  small: PropTypes.bool
+  small: PropTypes.bool,
 };
