@@ -33,6 +33,7 @@ class Firebase {
   async register(name, email, password, conf) {
     if (password !== conf) throw Error("Password doesn't match with confirmation.");
     await this.auth.createUserWithEmailAndPassword(email, password);
+    this.db.collection("users").doc(this.auth.currentUser.uid).set({ source: null, target: null, words: [] });
     return this.auth.currentUser.updateProfile({
       displayName: name,
     });

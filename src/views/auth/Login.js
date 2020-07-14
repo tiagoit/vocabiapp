@@ -100,9 +100,7 @@ export default function Login(props) {
                     <CustomInput
                       labelText="Password"
                       id="password"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
+                      formControlProps={{ fullWidth: true }}
                       inputProps={{
                         type: "password",
                         value: password,

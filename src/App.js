@@ -10,7 +10,9 @@ import LandingPage from "views/LandingPage/LandingPage.js";
 import Profile from "views/Profile/Profile.js";
 import Login from "views/auth/Login.js";
 import Register from "views/auth/Register.js";
-import LanguageSelection from "views/LanguageSelection/LanguageSelection.js";
+import Language from "views/Language";
+import Levels from "views/Levels";
+import Play from "views/Play";
 import PasswordReset from "views/auth/PasswordReset";
 import PasswordResetHandler from "./views/auth/PasswordResetHandler";
 
@@ -36,7 +38,9 @@ export default function App() {
         <Route path="/password-reset" component={PasswordReset} />
         <Route path="/password-reset-handler" component={PasswordResetHandler} />
         <Route path="/profile" component={Profile} />
-        <Route path="/language-selection" component={LanguageSelection} />
+        <Route path="/language" component={Language} />
+        <Route path="/levels" component={Levels} />
+        <Route path="/play/:pos?/:level?" component={Play} />
         <Route path="/components" component={Components} />
         <Route path="/" component={LandingPage} />
       </Switch>
